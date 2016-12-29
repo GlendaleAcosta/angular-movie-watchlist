@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
     <head>
-        <title>EAN-BoilerPlate 2</title>
+        <title>Angular Movie Watchlist</title>
         <meta charset="UTF-8">
+        <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
         <!--<link href="css/style.css" rel="stylesheet">-->
     </head>
     <body>
-        <h1>Hello World!!</h1>
-        <div ui-view="main"></div>
 
+
+        
+        <div ui-view="navbar"></div>
+        <div ui-view="page"></div>
+        
+        
+
+        <!--Angular-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
         <script src="app.js"></script>
+        <script src="navbar/navbar.js"></script>
         <script src="home/home.js"></script>
+        <script src="about/about.js"></script>
+        <script src="catalog/catalog.js"></script>
+        <script src="login/login.js"></script>
+        <script src="signup/signup.js"></script>
     </body>
 </html>

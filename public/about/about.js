@@ -1,26 +1,24 @@
-angular.module('myApp.home', ['ui.router'])
+angular.module('myApp.about', ['ui.router'])
 
 .config(['$stateProvider', function($stateProvider){
 
-    $stateProvider
-        .state('home', {
-            url: '/',
+   $stateProvider
+        .state('about', {
+            url: '/about',
             views: {
                 'navbar': {
                     templateUrl: 'navbar/navbar.html',
                     controller: 'navbarController'
                 },
                 'page': {
-                    templateUrl: 'home/home.html',
-                    controller: 'homeController'
+                    templateUrl: 'about/about.html',
+                    controller: 'aboutController'
                 }
             }
         })
-
 }])
 
-.controller('homeController', ['$scope', function($scope){
+.controller('aboutController', ['$scope', function($scope){
     
-
     
 }]);

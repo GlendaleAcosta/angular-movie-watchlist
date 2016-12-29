@@ -1,26 +1,25 @@
-angular.module('myApp.home', ['ui.router'])
+angular.module('myApp.catalog', ['ui.router'])
 
 .config(['$stateProvider', function($stateProvider){
 
-    $stateProvider
-        .state('home', {
-            url: '/',
+   $stateProvider
+        .state('catalog', {
+            url: '/catalog',
             views: {
                 'navbar': {
                     templateUrl: 'navbar/navbar.html',
                     controller: 'navbarController'
                 },
                 'page': {
-                    templateUrl: 'home/home.html',
-                    controller: 'homeController'
+                    templateUrl: 'catalog/catalog.html',
+                    controller: 'catalogController'
                 }
             }
         })
 
 }])
 
-.controller('homeController', ['$scope', function($scope){
+.controller('catalogController', ['$scope', function($scope){
     
-
     
 }]);

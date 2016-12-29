@@ -27,7 +27,7 @@ var homeController = require('./controllers/home.js');
 
 // Routes
 // ============================================================
-app.get('/', homeController);
+app.get('*', homeController);
 
 
 
