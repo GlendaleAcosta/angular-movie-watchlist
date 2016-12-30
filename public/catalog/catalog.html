@@ -2,4 +2,39 @@
     <div class="container">
         <h3>Catalog Page</h3>
     </div>
-</div
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <form ng-submit="onSearch(title)">
+                <div class="input-group">
+                    <input ng-model="title" type="text" class="form-control" placeholder="Enter title name...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Movie Cards-->
+        <div ng-repeat="movie in movies" class="col-md-3">
+            <div class="card">
+                <div class="card-block">
+                    <h5 class="card-title">{{movie.title}}</h5>
+                    <!--<p class="card-text"> Rating: {{movie.rating}}</p>-->
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</div>
