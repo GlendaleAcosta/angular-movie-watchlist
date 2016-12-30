@@ -25,16 +25,16 @@
     <div class="row">
 
         <!-- Movie Cards-->
-        <div ng-repeat="movie in movies" class="col-md-3">
+        <div ng-repeat="movie in movies" class="col-md-2">
+            <img class="card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
             <div class="card">
                 <div class="card-block">
                     <h5 class="card-title">{{movie.title}}</h5>
-                    <!--<p class="card-text"> Rating: {{movie.rating}}</p>-->
                 </div>
             </div>
         </div>
 
-        
+        <!--/pZC9HA9ngsG68vsGzwZwpSYFnDh.jpg-->
 
     </div>
 </div>
