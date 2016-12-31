@@ -29,7 +29,17 @@ var homeController = require('./controllers/home.js');
 
 // Routes
 // ============================================================
-app.get('*', homeController);
+// app.get('*', homeController);
+// app.get('*', function(req, res, next){
+//     res.sendFile(path.join(__dirname + '/public/index.html'));
+// })
+app.get('/*', function(req, res) {
+  var url = path.resolve(__dirname + '/public/index.html');
+  res.sendFile(url, null, function(err) {
+    if (err) res.status(500).send(err);
+    else res.status(200).end();
+  });
+});
 
 
 

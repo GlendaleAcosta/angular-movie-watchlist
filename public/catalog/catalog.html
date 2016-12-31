@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container space">
     <div class="row">
         <div class="col-md-6 offset-md-3">
 
@@ -16,25 +16,37 @@
                 </span>
                 </div>
             </form>
-
+            <button type="button" ng-click="equalHeight()" class="btn btn-success">Equalize</button>
         </div>
     </div>
 </div>
 
-<div class="container-fluid">
+<!--<div class="container-fluid">
     <div class="row">
 
-        <!-- Movie Cards-->
-        <div ng-repeat="movie in movies" class="col-md-2">
-            <img class="card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
+         
+        <div ng-repeat="movie in movies" class="col-sm-2">
+            <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
             <div class="card">
                 <div class="card-block">
-                    <h5 class="card-title">{{movie.title}}</h5>
+                    <p class="card-title">{{movie.title}}</p>
                 </div>
             </div>
         </div>
 
-        <!--/pZC9HA9ngsG68vsGzwZwpSYFnDh.jpg-->
 
     </div>
+</div>-->
+        <!--/pZC9HA9ngsG68vsGzwZwpSYFnDh.jpg-->
+<div class="flex-container">
+
+    <div class="movie-item" ng-repeat="movie in movies">
+        <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
+        <!--<div class="card">
+            <div class="card-block">
+                <p class="card-title">{{movie.title}}</p>
+            </div>
+        </div>-->
+    </div>
+
 </div>
