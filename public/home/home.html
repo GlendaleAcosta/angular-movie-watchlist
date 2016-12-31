@@ -1,16 +1,72 @@
-<div class="jumbotron jumbotron-fluid">
+<div ng-style="{'background-image': bgImageUrl}" class="jumbotron jumbotron-fluid main-header">
+    <img class="bg_img" ng-style="{'opacity': opac3, 'z-index': zIndex3}" ng-src="{{imgSrc3}}" alt="">
+    <img class="bg_img" ng-style="{'opacity': opac2, 'z-index': zIndex2}" ng-src="{{imgSrc2}}" alt="">
+    <img class="bg_img" ng-style="{'opacity': opac1, 'z-index': zIndex1}" ng-src="{{imgSrc1}}" alt="">
     <div class="container">
-        <h1 class="display-3">Angular Watchlist</h1>
-        <p class="lead">Find, review, and save your movies!</p>
+        <div class="pos-abs">
+            <h1 class="display-3 white">Angular Watchlist</h1>
+            <p class="lead white space">Find, review, and save your movies!</p>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="/catalog"><button class="form-control btn btn-success" type="button">Find Movies!</button></a>
+                </div>
+            </div>
+
+        </div>
+
+        
     </div>
 </div>
 
 <div class="container">
     <div class="row">
 
-        <div class="col-md-4 offset-md-4">
-            <a href="/catalog"><button class="form-control btn btn-primary" type="button">Find Movies!</button></a>
+        <div class="col-md-6 offset-md-3 space">
+            <div class="text-center">
+                <h3 class="display-4 space">Search Movies</h3>
+                <p class="lead space"> Here at Angular Watchlist, you can find just about any movie you can think of! 
+                    It's as easy as Juan, Two, Three!
+                </p>
+                <a href="/catalog"><button class="form-control btn btn-outline-primary" type="button">Search for Movies!</button></a>
+            </div>
+            
         </div>
+
+        <div class="col-md-8 offset-md-2 space">
+            <hr>    
+        </div>
+
+        <div class="col-md-4 space">
+            <div class="text-center">
+                <h3 class="display-4 space">Card 1</h3>
+                <p class="lead space"> Here at Angular Watchlist, you can find just about any movie you can think of! 
+                    It's as easy as Juan, Two, Three!
+                </p>
+                <a href="/catalog"><button class="form-control btn btn-outline-primary" type="button">Search for Movies!</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-4 space">
+            <div class="text-center">
+                <h3 class="display-4 space">Card 2</h3>
+                <p class="lead space"> Here at Angular Watchlist, you can find just about any movie you can think of! 
+                    It's as easy as Juan, Two, Three!
+                </p>
+                <a href="/catalog"><button class="form-control btn btn-outline-primary" type="button">Search for Movies!</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-4 space">
+            <div class="text-center">
+                <h3 class="display-4 space">Card 3</h3>
+                <p class="lead space"> Here at Angular Watchlist, you can find just about any movie you can think of! 
+                    It's as easy as Juan, Two, Three!
+                </p>
+                <a href="/catalog"><button class="form-control btn btn-outline-primary" type="button">Search for Movies!</button></a>
+            </div>
+        </div>
+
     </div>
 </div>
 

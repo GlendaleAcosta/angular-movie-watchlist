@@ -15,6 +15,19 @@
     }
 }
 
+@media only screen and (min-width: 1600px) {
+    .card-img {
+        height: 320px;
+    }
+}
+
+/*@media only screen and (min-width: 800px) {
+    .card-img {
+        width: 100%;
+        height: 160px;
+    }
+}*/
+
 .cool-container {
     margin-left: 40px;
     margin-right: 40px;
@@ -44,4 +57,53 @@
 
 .space{
     margin-bottom: 2rem;
+}
+
+
+.main-header{
+    height: 650px;
+    /*background-image: url('../images/rogue_one_bg.jpg');
+    background-size: cover;  */
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.bg_img {
+    
+    /*width: auto;
+    height: 600px;
+    top: 0;
+    position: absolute;*/
+        position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    margin: auto 0;
+    width: 100%;
+    z-index: 2;
+    transition: ease-in-out opacity 2s;
+}
+
+
+.white {
+    color: #fff;
+}
+
+.navbar {
+    border-radius: 0;
+    position: relative;
+    z-index: 5;
+}
+
+.pos-abs {
+    position: absolute;
+    z-index: 5;
+}
+
+.text-center {
+    text-align: center;
 }
