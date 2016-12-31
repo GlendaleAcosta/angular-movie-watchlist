@@ -30,7 +30,9 @@ angular.module('myApp.catalog', ['ui.router'])
 
     $scope.onSearch = function(title){
         
-        
+        $scope.titleResult = title;
+        $scope.genreResult = null;
+
         $http({
             method: 'GET',
             url: 'https://api.themoviedb.org/3/search/movie?api_key=' + api_key + '&language=en-US&query=' + title + '&page=1&include_adult=false' 
@@ -88,7 +90,9 @@ angular.module('myApp.catalog', ['ui.router'])
     
     $scope.selectGenre = function($index){
         
-        console.log($scope.genres[$index]);
+        $scope.genreResult = $scope.genres[$index].name;
+        $scope.titleResult = null;
+        
         var genreId = $scope.genres[$index].id;
         $http({
             method: 'GET',
