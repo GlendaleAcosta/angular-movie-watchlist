@@ -52,7 +52,6 @@ angular.module('myApp.catalog', ['ui.router'])
                         }
                     }
 
-                    
 
                 }, 500);
                 

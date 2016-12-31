@@ -1,4 +1,18 @@
 .card-img {
+    width: 100%;
+    height: 200px;
+}
+
+@media only screen and (min-width: 1400px) {
+    .card-img {
+        width: 100%;
+        height: 260px;
+    }
+
+    .flex-container {
+        margin-left: 0;
+        margin-right: 0; 
+    }
 }
 
 .cool-container {
@@ -9,17 +23,23 @@
 .movie-item{
     width: 12.5%;
     padding: 5px;
+    overflow: hidden;
+    
 }
 
 .flex-container {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 1600px;  
     align-items: stretch; 
+}
+
+@media only screen and (min-width:1200px) {
+    
 }
 
 .space{
