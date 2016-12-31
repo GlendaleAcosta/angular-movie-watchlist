@@ -32,6 +32,7 @@ angular.module('myApp.catalog', ['ui.router'])
         
         $scope.titleResult = title;
         $scope.genreResult = null;
+        $scope.popularResult = null;
 
         $http({
             method: 'GET',
@@ -87,11 +88,49 @@ angular.module('myApp.catalog', ['ui.router'])
     }
 
     getGenres();
+
+    var getPopularGenres = function(){
+
+        $scope.popularResult = "Popular";
+
+        $http({
+            method: 'GET',
+            url: 'https://api.themoviedb.org/3/movie/popular?api_key=' + api_key + '&language=en-US&page=1'
+        })
+            .then(function(res){
+                $scope.movies = res.data.results;
+
+                $timeout(function(){
+                    
+                    var images_arr = document.getElementsByTagName('img');
+                    var images_length = images_arr.length;
+
+                    for(var i = 0; i < images_length; i++) {
+
+                        var src = images_arr[i].src;
+                        var isNull = src.endsWith('null'); 
+                        if (isNull) {
+                            images_arr[i].src = '../images/default_img.jpg';
+                        }
+                    }
+
+
+                }, 500);
+
+            }, function(err){
+                console.log(err);
+            })
+
+            
+    }
+
+    getPopularGenres();
     
     $scope.selectGenre = function($index){
         
         $scope.genreResult = $scope.genres[$index].name;
         $scope.titleResult = null;
+        $scope.popularResult = null;
         
         var genreId = $scope.genres[$index].id;
         $http({
