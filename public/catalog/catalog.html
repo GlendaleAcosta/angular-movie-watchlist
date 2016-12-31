@@ -1,12 +1,30 @@
-<div class="jumbotron">
-    <div class="container">
-        <h3>Catalog Page</h3>
-    </div>
-</div>
 
-<div class="container space">
+<div class="container space-2">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+
+        <div class="col-md-3">
+
+            <!--<div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>-->
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Genres</h4>
+                </div>
+            
+                <ul class="list-group list-group-flush genres-container">
+                    <li ng-click="selectGenre($index)" ng-repeat="genre in genres" class="list-group-item genre-item">{{genre.name}}</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-9">
 
             <form ng-submit="onSearch(title)">
                 <div class="input-group">
@@ -16,8 +34,19 @@
                 </span>
                 </div>
             </form>
+
+            <h3 class="space-2-sm">Search results for "Moana" </h3>
             
+            <div class="flex-container">
+
+                <div class="movie-item" ng-repeat="movie in movies">
+                    <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </div>
 
@@ -38,15 +67,3 @@
     </div>
 </div>-->
         <!--/pZC9HA9ngsG68vsGzwZwpSYFnDh.jpg-->
-<div class="flex-container">
-
-    <div class="movie-item" ng-repeat="movie in movies">
-        <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
-        <!--<div class="card">
-            <div class="card-block">
-                <p class="card-title">{{movie.title}}</p>
-            </div>
-        </div>-->
-    </div>
-
-</div>

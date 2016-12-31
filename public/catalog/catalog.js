@@ -24,11 +24,12 @@ angular.module('myApp.catalog', ['ui.router'])
 
 .controller('catalogController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
     
+    var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4';
+
+    
 
     $scope.onSearch = function(title){
         
-        var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4';
-
         
         $http({
             method: 'GET',
@@ -61,9 +62,68 @@ angular.module('myApp.catalog', ['ui.router'])
             })
     }
 
+    var getGenres = function(){
+    $scope.genres = [];
+
+        $http({
+            method: 'GET',
+            url: 'https://api.themoviedb.org/3/genre/movie/list?api_key=' + api_key + '&language=en-US'
+        })
+            .then(function(res){
+                
+                var genres_arr = res.data.genres;
+                var genres_length = genres_arr.length;
+                $scope.genres = genres_arr;
+                console.log(genres_arr);
+                console.log(genres_length);
+
     
 
+            }, function(err){
+                console.log(err);
+            })
+    }
+
+    getGenres();
+    
+    $scope.selectGenre = function($index){
+        
+        console.log($scope.genres[$index]);
+        var genreId = $scope.genres[$index].id;
+        $http({
+            method: 'GET',
+            url: 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + api_key + '&language=en-US&include_adult=false&sort_by=created_at.asc'
+        })
+            .then(function(res){
+                console.log(res.data);
+                $scope.movies = res.data.results;
+
+                $timeout(function(){
+                    
+                    var images_arr = document.getElementsByTagName('img');
+                    var images_length = images_arr.length;
+
+                    for(var i = 0; i < images_length; i++) {
+
+                        var src = images_arr[i].src;
+                        var isNull = src.endsWith('null'); 
+                        if (isNull) {
+                            images_arr[i].src = '../images/default_img.jpg';
+                        }
+                    }
+
+
+                }, 500);
+
+            }, function(err){
+                console.log(err);
+            })
+    }
     
     // imdb api key: edb9cf13-36f4-47e8-a724-e6bcdd1148d5
     // http://imdb.wemakesites.net/#anhcor-search-imdb
+
+
+// https://api.themoviedb.org/3/genre/28/movies?api_key=1cc7edd7a3b1549a1de32ac8a417a5e4&language=en-US&include_adult=false&sort_by=created_at.asc
+//https://api.themoviedb.org/3/genre/4movies?api_key=1cc7edd7a3b1549a1de32ac8a417a5e4&language=en-US&include_adult=false&sort_by=created_at.asc 
 }])
