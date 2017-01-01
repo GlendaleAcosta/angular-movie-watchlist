@@ -27,7 +27,9 @@ angular.module('myApp.movie', ['ui.router'])
         url: 'https://api.themoviedb.org/3/movie/' + $stateParams.movieId + '?api_key=' + api_key + '&language=en-US'
     })
         .then(function(res){
-            console.log(res.data);       
+            console.log(res.data);
+            $scope.overview = res.data.overview;
+            $scope.poster_path = res.data.poster_path;       
             $scope.movieTitle = res.data.title;
             $scope.backdrop = res.data.backdrop_path;
             $scope.myObj = {
@@ -44,11 +46,11 @@ angular.module('myApp.movie', ['ui.router'])
         url: 'https://api.themoviedb.org/3/movie/' + $stateParams.movieId + '/credits?api_key=' + api_key
     })
         .then(function(res){
-            console.log(res.data.cast);
+            
             var cast_arr = res.data.cast;
             var cast_length = cast_arr.length;
             cast_arr.splice(4, cast_length);
-            console.log(cast_arr);
+            
             $scope.castMembers = cast_arr;
             
         }, function(err){
@@ -61,19 +63,29 @@ angular.module('myApp.movie', ['ui.router'])
         var posY = (window.scrollY);
         document.getElementsByClassName('movie-header')["0"].style.backgroundPositionY =  '-' + (posY/2.3) + 'px';
         
-        
+        // Very messy darking parallax shiet
         var alpha = posY / 550;
-        if (alpha < 0.5 && alpha >= 0) {
-            document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,' + alpha + ')';
+        if (alpha < 0.74 && alpha >= 0) {
+            if (alpha < 0.3) {
+                document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,0.3)';    
+            } else {
+                document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,' + alpha + ')';
+            }
         }
 
-        window.onscroll = function(){   
+        window.onscroll = function(){
+            // Parallax    
             posY = window.scrollY;
             document.getElementsByClassName('movie-header')["0"].style.backgroundPositionY =  '-' + (posY/2.3) + 'px';
 
+            // more messy darkening parallax shiet
             alpha = posY / 550;
-            if (alpha < 0.5 && alpha >= 0) {
-                document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,' + alpha + ')';
+            if (alpha < 0.74 && alpha >= 0) {
+                if (alpha < 0.3) {
+                    document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,0.3)';    
+                } else {
+                    document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,' + alpha + ')';
+                }
             }
         }
         
