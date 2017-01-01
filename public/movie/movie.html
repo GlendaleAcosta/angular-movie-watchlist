@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9 space-2">
+            <form ng-submit="onSearch(title)">
+                <div class="input-group">
+                    <input ng-model="title" type="text" class="form-control" placeholder="Enter title name...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </span>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <div>
+        <h1>Movie: {{movieTitle}}</h1>
+        <!--<ul ng-repeat="castMember in castMembers">
+          
+            <li>Character: {{castMember.character}}</li>
+            <li>Actor/Actress: {{castMember.name}}</li>
+        </ul>-->
+        
+        <div ng-repeat="castMember in castMembers" class="card col-md-3">
+            <div class="card-block">
+                <h4 class="card-title lead">{{castMember.character}}</h4>
+                <h6 class="card-subtitle text-muted">{{castMember.name}}</h6>
+            </div>
+            <!--<img src="" alt="Card image">-->
+            <div class="card-block">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+
+    </div>
+</div>

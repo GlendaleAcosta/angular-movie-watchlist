@@ -5,7 +5,8 @@ angular.module("myApp", [
     "myApp.catalog",
     "myApp.navbar",
     "myApp.login",
-    "myApp.signup"
+    "myApp.signup",
+    "myApp.movie"
 ])
 
 .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){

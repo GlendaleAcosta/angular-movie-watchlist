@@ -40,10 +40,11 @@
             <h4 ng-hide="!popularResult" class="space-2-sm">Showing "{{popularResult}}" results...</h4>
             
             <div class="flex-container">
-
-                <div class="movie-item" ng-repeat="movie in movies">
+                <div ng-click="selectMovie($index)" class="movie-item" ng-repeat="movie in movies">
+                    <a ui-sref="movie({movieId: movieId})">
                     <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
                     <p class="mi-title white">{{movie.title}}</p>
+                    </a>
                 </div>
 
             </div>

@@ -163,6 +163,10 @@ angular.module('myApp.catalog', ['ui.router'])
             })
     }
     
+
+    $scope.selectMovie = function($index){
+        $scope.movieId = $scope.movies[$index].id
+    }
     // imdb api key: edb9cf13-36f4-47e8-a724-e6bcdd1148d5
     // http://imdb.wemakesites.net/#anhcor-search-imdb
 
