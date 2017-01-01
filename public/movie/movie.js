@@ -60,10 +60,21 @@ angular.module('myApp.movie', ['ui.router'])
         
         var posY = (window.scrollY);
         document.getElementsByClassName('movie-header')["0"].style.backgroundPositionY =  '-' + (posY/2.3) + 'px';
+        
+        
+        var alpha = posY / 550;
+        if (alpha < 0.5 && alpha >= 0) {
+            document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,' + alpha + ')';
+        }
 
         window.onscroll = function(){   
             posY = window.scrollY;
             document.getElementsByClassName('movie-header')["0"].style.backgroundPositionY =  '-' + (posY/2.3) + 'px';
+
+            alpha = posY / 550;
+            if (alpha < 0.5 && alpha >= 0) {
+                document.getElementsByClassName('darken-parallax')["0"].style.backgroundColor = 'rgba(0,0,0,' + alpha + ')';
+            }
         }
         
 

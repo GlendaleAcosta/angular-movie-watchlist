@@ -164,6 +164,22 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    /*box-shadow: inset 10px 10px 10px black;*/
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-header-content {
+    z-index: 5;
+    position: absolute;
+}
+
+.darken-parallax {
+    height: 400px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: 2
 }
 
 .cast-card {
