@@ -27,8 +27,14 @@ angular.module('myApp.movie', ['ui.router'])
         url: 'https://api.themoviedb.org/3/movie/' + $stateParams.movieId + '?api_key=' + api_key + '&language=en-US'
     })
         .then(function(res){
-            console.log(res.data);
+            console.log(res.data);       
             $scope.movieTitle = res.data.title;
+            $scope.backdrop = res.data.backdrop_path;
+            $scope.myObj = {
+                'background-image' : "url('http://image.tmdb.org/t/p/w1280/" + $scope.backdrop + "')"
+            }
+
+            
         }, function(err){
             console.log(err);
         })
@@ -48,5 +54,18 @@ angular.module('myApp.movie', ['ui.router'])
         }, function(err){
             console.log(err);
         })
-    
+
+
+        // Movie-Header PARALLAX
+        
+        var posY = (window.scrollY);
+        document.getElementsByClassName('movie-header')["0"].style.backgroundPositionY =  '-' + (posY/2.3) + 'px';
+
+        window.onscroll = function(){   
+            posY = window.scrollY;
+            document.getElementsByClassName('movie-header')["0"].style.backgroundPositionY =  '-' + (posY/2.3) + 'px';
+        }
+        
+
+
 }]);

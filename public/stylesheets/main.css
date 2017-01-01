@@ -153,3 +153,20 @@
     border-bottom: none;
 }
 
+
+
+
+
+/* Movies */
+.movie-header {
+    background-attachment: fixed;
+    min-height: 400px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cast-card {
+    /*padding-top: 15px;*/
+    /*border-radius: 15px;*/
+}
