@@ -11,59 +11,62 @@
                 </div>
             </form>
         </div>
-        
+
     </div>
     <div>
-        
+
 
         <div class="movie-header" ng-style="myObj">
             <div class="movie-header-content">
 
-                
+                <div class="main-movie-card card col-md-4">
+                    <img class="main-movie-card-img img-fluid" src="{{'http://image.tmdb.org/t/p/w342/' + poster_path}}" alt="">
+                </div>
 
-                
-                    <div class="main-movie-card card col-md-4">
-                        
-                        <img class="main-movie-card-img img-fluid" src="{{'http://image.tmdb.org/t/p/w342/' + poster_path}}" alt="">
-
-                    </div>
-                    
-                    <div class="movie-main-details col-md-7">
-                        <h1 class="display-5 white">{{movieTitle}}</h1>
-                        <hr class="white-hr">
-   
-                        <p class="col-md-10 small white">
-                            {{overview}}
-                        </p>
-                    </div>
-                    
-
+                <div class="movie-main-details col-md-7">
+                    <h1 class="display-5 white">{{movieTitle}} ({{titleReleaseDate}})</h1>
+                    <span ng-repeat="genre in genres" class="tag tag-danger genre-tag">{{genre.name}}</span>
+                    <hr class="white-hr">
+                    <p class="col-md-10 small white">{{overview}}</p>
+                </div>
 
             </div>
             <div class="darken-parallax"></div>
         </div>
 
-            <div class="row">
+        <div class="flex-container">
 
-                <div class="col-md-5">
+            <div class="col-md-5">
 
+                <div class="video-trailer embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" ng-src="{{ trailerUrl(movieSrc) }}" allowfullscreen></iframe>
                 </div>
-                <div ng-repeat="castMember in castMembers" class="col-md-2">
+                
+
+            </div>  
+            <div class="col-md-7">
+                
+                <h2 class="lead space-2-sm">Main Cast:</h2>
+                <div ng-repeat="castMember in castMembers" class="col-md-3 card cast-card">
                     <img class="cast-img card-img-top img-fluid" src="{{'http://image.tmdb.org/t/p/w342/' + castMember.profile_path}}" alt="Card image">
-                    <div class="card">
-                        <div class="card-block">
-                            <h4 class="card-title">{{castMember.character}}</h4>
-                            <h6 class="card-subtitle text-muted">{{castMember.name}}</h6>
+                    
+                        <div class="card-block p-10">
+                            <p class="lead">{{castMember.character}}</p>
+                            <p class="small">{{castMember.name}}</h6>
+                            <br/>    
+                            
+                            <a href="#" class="card-link align-right">View Details...</a>
                         </div>
-                        <div class="card-block">
-                            <a href="#" class="card-link">Card link</a>
-                        </div>
-                    </div>
+                    
                 </div>
+
+                
 
             </div>
 
-        
+        </div>
+
+
 
     </div>
 </div>
