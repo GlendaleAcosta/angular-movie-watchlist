@@ -178,7 +178,7 @@
 .main-movie-card {
     bottom: -90px;
     position: absolute;
-    left: 50px;
+    left: 30px;
 }
 .movie-main-details {
     padding-top: 50px;
@@ -225,6 +225,10 @@
 }
 .p-0 {
     padding: 0;
+}
+
+.p-0-left {
+    padding-left: 0;
 }
 .video-trailer {
     margin-top: 100px;
