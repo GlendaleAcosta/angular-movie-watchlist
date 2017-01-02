@@ -230,6 +230,15 @@
 .p-0-left {
     padding-left: 0;
 }
+
+.p-0-right {
+    padding-right: 0;
+}
+.p-0-rl{
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .video-trailer {
-    margin-top: 100px;
+    
 }

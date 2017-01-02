@@ -38,13 +38,11 @@
 
             <div class="col-md-5 p-0-left">
 
-                <div class="video-trailer embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item" ng-src="{{ trailerUrl(movieSrc) }}" allowfullscreen></iframe>
-                </div>
+                
                 
 
             </div>  
-            <div class="col-md-7">
+            <div class="col-md-7 p-0-right">
                 
                 <h2 class="lead space-2-sm">Main Cast:</h2>
                 <div ng-repeat="castMember in castMembers" class="col-md-3 card cast-card">
@@ -59,13 +57,17 @@
                         </div>
                     
                 </div>
-
+                <div class="col-md-12 p-0-rl">
+                    
+                    <div class="video-trailer embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" ng-src="{{ trailerUrl(movieSrc) }}" allowfullscreen></iframe>
+                    </div>
+                </div>
                 
 
+            <hr>
             </div>
-
         </div>
-
 
 
     </div>
