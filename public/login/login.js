@@ -15,7 +15,27 @@ angular.module('myApp.login', ['ui.router'])
 
 }])
 
-.controller('loginController', ['$scope', function($scope){
+.controller('loginController', ['$scope', '$http' , function($scope, $http){
     
-    
+    $scope.login = function(email, password){
+        
+        var user = {
+            email: email,
+            password: password
+        }
+
+        $http({
+            method: 'POST',
+            url: '/login',
+            data: user
+        })
+        .then(function(res){
+            console.log(res.data);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
+
+
 }]);

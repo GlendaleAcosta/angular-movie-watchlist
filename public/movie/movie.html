@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container p-0-rl">
     <div class="row">
 
         <div class="col-md-9 space-2">
@@ -27,45 +27,54 @@
                     <h1 class="display-5 white">{{movieTitle}} ({{titleReleaseDate}})</h1>
                     <span ng-repeat="genre in genres" class="tag tag-danger genre-tag">{{genre.name}}</span>
                     <hr class="white-hr">
-                    <p class="col-md-10 small white">{{overview}}</p>
+                    <p class="col-md-10 small white p-0-left">{{overview}}</p>
                 </div>
 
             </div>
             <div class="darken-parallax"></div>
         </div>
 
+        <div class="row">
+            <div class="push-md-4 col-md-8 details-bar">
+                <button class="col-md-6 btn btn-primary br-0" type="button">Add To Watchlist</button>
+                <button class="col-md-6 btn btn-success br-0" type="button">Favorite</button>
+            </div>
+        </div>
+
+
+
         <div class="flex-container">
 
             <div class="col-md-5 p-0-left">
 
-                
-                
 
-            </div>  
+
+
+            </div>
             <div class="col-md-7 p-0-right">
-                
-                <h2 class="lead space-2-sm">Main Cast:</h2>
+
+                <h2 class="lead">Main Cast:</h2>
                 <div ng-repeat="castMember in castMembers" class="col-md-3 card cast-card">
                     <img class="cast-img card-img-top img-fluid" src="{{'http://image.tmdb.org/t/p/w342/' + castMember.profile_path}}" alt="Card image">
-                    
-                        <div class="card-block p-10">
-                            <p class="lead">{{castMember.character}}</p>
-                            <p class="small">{{castMember.name}}</h6>
-                            <br/>    
-                            
+
+                    <div class="card-block p-10">
+                        <p class="lead">{{castMember.character}}</p>
+                        <p class="small">{{castMember.name}}</h6>
+                            <br/>
+
                             <a href="#" class="card-link align-right">View Details...</a>
-                        </div>
-                    
+                    </div>
+
                 </div>
                 <div class="col-md-12 p-0-rl">
-                    
+
                     <div class="video-trailer embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" ng-src="{{ trailerUrl(movieSrc) }}" allowfullscreen></iframe>
                     </div>
                 </div>
-                
 
-            <hr>
+
+                <hr>
             </div>
         </div>
 
