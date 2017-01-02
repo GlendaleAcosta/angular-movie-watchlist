@@ -1,5 +1,7 @@
 var pgp = require('pg-promise')();
 var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
+
 var connection = {
     host: 'localhost',
     port: 5433,
@@ -63,11 +65,21 @@ exports.postLogin = function(req,res,next) {
         
         if(data.length > 0) {
             bcrypt.compare(email, data[0].password, function(err, response){
+
                 if (!err) {
                     db.query('UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE email=${email}', {email})
                     .then(function(){
+                        user = data[0]
+                        delete user.password;
+                        delete user.date_deleted;
+
+                        var token = jwt.sign(email, "process.env.JWT_SECRET_KEY");
+
                         res.json({
-                            msg: 'You have successfully logged in as ' + email
+                            msg: 'You have successfully logged in as ' + email,
+                            user: user,
+                            token: token,
+                            isLoggedIn: true
                         })
                     })
                 }

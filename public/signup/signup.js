@@ -8,14 +8,21 @@ angular.module('myApp.signup', ['ui.router'])
             views: {
                 'page': {
                     templateUrl: 'signup/signup.html',
-                    controller: 'signupController'
+                    controller: 'signupController',
+                    resolve: {
+                        validateUser : function(auth, $location) {
+                            if (auth.getToken() !== undefined) {
+                                $state.go('home');
+                            }
+                        }
+                    }
                 }
             }
         })
 
 }])
 
-.controller('signupController', ['$scope', '$http', function($scope, $http){
+.controller('signupController', ['$scope', '$http', 'validateUser' ,function($scope, $http, validateUser){
     
     $scope.signUp = function(email, password){
         

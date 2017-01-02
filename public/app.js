@@ -16,4 +16,21 @@ angular.module("myApp", [
 
         
         $locationProvider.html5Mode(true);
+}])
+
+
+
+.service('auth', [ '$window' , '$http', function($window, $http){
+    
+    this.getToken = function(){
+        return $window.sessionStorage['watchlist-token'];
+    }
+
+    this.setToken = function(token) {
+        $window.sessionStorage['watchlist-token'] = token;
+    }
+
+    this.logout = function() {
+        $window.sessionStorage.removeItem('watchlist-token');
+    }
 }]);
