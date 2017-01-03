@@ -13,11 +13,16 @@
                 <a class="nav-link" href="/about">About</a>
             </li>
         </ul>
-        <ul class="nav navbar-nav float-xs-right">
+        <ul ng-show="!isLoggedIn" class="nav navbar-nav float-xs-right">
             <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
             <a class="nav-item" href="/sign-up"><button class="btn btn-success" type="button">Sign Up</button></a>
         </ul>
+        <ul ng-show="isLoggedIn" class="nav navbar-nav float-xs-right">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">{{email}}</a>
+            </li>
+        </ul>        
     </div>
 </nav>

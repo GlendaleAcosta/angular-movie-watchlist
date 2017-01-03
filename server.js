@@ -32,9 +32,7 @@ var userController = require('./controllers/user.js');
 app.get('*', homeController);
 app.post('/sign-up', userController.postSignUp);
 app.post('/login', userController.postLogin);
-// app.get('*', function(req, res, next){
-//     res.sendFile(path.join(__dirname + '/public/index.html'));
-// })
+app.post('/authenticate', userController.postAuthenticate);
 
 
 

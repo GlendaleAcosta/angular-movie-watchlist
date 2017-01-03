@@ -33,4 +33,19 @@ angular.module("myApp", [
     this.logout = function() {
         $window.sessionStorage.removeItem('watchlist-token');
     }
-}]);
+}])
+
+
+.service('navData', function(){
+    
+    this.user = null;
+
+    this.setUser = function(user) {
+        this.user = user;
+    }
+
+    this.getUser = function() {
+        return this.user;
+    }
+
+});

@@ -22,7 +22,7 @@ angular.module('myApp.login', ['ui.router'])
 
 }])
 
-.controller('loginController', ['$scope', '$http', '$location' , 'auth', 'validateUser' , function($scope, $http, $location ,auth, validateUser){
+.controller('loginController', ['$scope', '$http', '$location', '$state' , 'auth', 'validateUser', 'navData' , function($scope, $http, $location, $state ,auth, validateUser, navData){
 
     $scope.login = function(email, password){
         
@@ -38,10 +38,13 @@ angular.module('myApp.login', ['ui.router'])
         })
         .then(function(res){
             console.log(res.data);
+            var user = res.data.user;
             $scope.isLoggedIn = res.data.isLoggedIn;
             auth.setToken(res.data.token);
-            console.log($scope.isLoggedIn);
+            
             if ($scope.isLoggedIn === true) {
+                navData.setUser(user);
+                console.log(navData.getUser());
                 $state.go('home');
             }
         })

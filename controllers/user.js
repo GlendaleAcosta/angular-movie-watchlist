@@ -92,3 +92,13 @@ exports.postLogin = function(req,res,next) {
         })
     })
 }
+
+
+
+exports.postAuthenticate = function(req, res, next) {
+    var token = req.body.token;
+
+    jwt.verify(token, 'process.env.JWT_SECRET_KEY', function(err, decoded) {
+        res.json({email: decoded}); 
+    });
+}
