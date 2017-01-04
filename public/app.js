@@ -6,7 +6,8 @@ angular.module("myApp", [
     "myApp.navbar",
     "myApp.login",
     "myApp.signup",
-    "myApp.movie"
+    "myApp.movie",
+    "myApp.profile"
 ])
 
 .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
