@@ -31,6 +31,19 @@ angular.module('myApp.navbar', ['ui.router'])
         $scope.isLoggedIn = false;
     }
 
-    
+    $scope.enterDropdown = function(){
+        $scope.dropdown = true;
+        // $scope.dropdownDisplay = 'block !important';
+        
+    }
+
+    $scope.leaveDropdown = function(){
+        $scope.dropdown = false;
+    }
+
+    $scope.logout = function(){
+        auth.logout();
+        $scope.isLoggedIn = false;
+    }
 
 }]);

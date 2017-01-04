@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-inverse">
+<nav ng-cloak class="navbar navbar-dark bg-inverse">
     <div class="container">
 
         <a class="navbar-brand" href="/">Movie Watchlist</a>
@@ -20,9 +20,22 @@
             <a class="nav-item" href="/sign-up"><button class="btn btn-success" type="button">Sign Up</button></a>
         </ul>
         <ul ng-show="isLoggedIn" class="nav navbar-nav float-xs-right">
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="/login">{{email}}</a>
+            </li>-->
+            <li ng-mouseenter="enterDropdown()" ng-mouseleave="leaveDropdown()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" >{{email}}</a>
+                <div ng-show="dropdown" class="show dropdown-menu">
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a ng-click="logout()" class="dropdown-item" >Logout</a>
+                </div>
             </li>
-        </ul>        
+        </ul>
+
+
+        
+
+
     </div>
 </nav>

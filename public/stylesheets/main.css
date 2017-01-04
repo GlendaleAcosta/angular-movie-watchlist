@@ -129,7 +129,7 @@
 .navbar {
     border-radius: 0;
     position: relative;
-    z-index: 5;
+    z-index: 10;
 }
 
 .pos-abs {
@@ -248,4 +248,9 @@
 }
 .details-bar {
     height: 100px;
+}
+
+.show {
+    display: block !important;
+    top: 95%;
 }
