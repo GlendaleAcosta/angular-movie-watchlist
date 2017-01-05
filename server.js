@@ -29,12 +29,7 @@ var userController = require('./controllers/user.js');
 
 // Routes
 // ============================================================
-// app.get('/', homeController.index);
-app.all('/*', function(req, res, next) {
-    // Just send the index.html for other files to support HTML5Mode
-    // res.sendFile('index.html', { root: __dirname + '/public' });
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
+app.get('/*', homeController.index);
 app.post('/sign-up', userController.postSignUp);
 app.post('/login', userController.postLogin);
 app.post('/authenticate', userController.postAuthenticate);

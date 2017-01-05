@@ -3,7 +3,7 @@ angular.module('myApp.signup', ['ui.router'])
 .config(['$stateProvider', function($stateProvider){
 
    $stateProvider
-        .state('signup', {
+        .state('sign-up', {
             url: '/sign-up',
             views: {
                 'page': {
