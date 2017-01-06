@@ -17,9 +17,6 @@ angular.module('myApp.catalog', ['ui.router'])
             }
         })
 
-    // $httpProvider.defaults.useXDomain = true;
-    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
 }])
 
 .controller('catalogController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){

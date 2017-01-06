@@ -1,17 +1,20 @@
+// Modules/ Libraries
 var express = require('express');
 var path = require('path');
 var dotenv = require('dotenv');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+
 // Load environment variables
 // ============================================================
 dotenv.load({ path: '.env' });
 
 
+// Server
+// ============================================================
 var app = express();
 var PORT = process.env.PORT || 3017;
-
 
 
 // Middleware
@@ -33,7 +36,6 @@ app.get('/*', homeController.index);
 app.post('/sign-up', userController.postSignUp);
 app.post('/login', userController.postLogin);
 app.post('/authenticate', userController.postAuthenticate);
-
 
 
 // Start Server
