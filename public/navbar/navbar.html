@@ -1,4 +1,4 @@
-<nav ng-cloak class="navbar navbar-dark bg-inverse">
+<nav class="navbar navbar-dark bg-inverse">
     <div class="container">
 
         <a class="navbar-brand" ui-sref="home">Movie Watchlist</a>
@@ -13,13 +13,13 @@
                 <a class="nav-link" ui-sref="about">About</a>
             </li>
         </ul>
-        <ul ng-show="!isLoggedIn" class="nav navbar-nav float-xs-right">
+        <ul ng-cloak ng-show="!isLoggedIn" class="nav navbar-nav float-xs-right">
             <li class="nav-item">
                 <a class="nav-link" ui-sref="login">Login</a>
             </li>
             <a class="nav-item" ui-sref="sign-up"><button class="btn btn-success" type="button">Sign Up</button></a>
         </ul>
-        <ul ng-show="isLoggedIn" class="nav navbar-nav float-xs-right">
+        <ul ng-cloak ng-show="isLoggedIn" class="nav navbar-nav float-xs-right">
             <!--<li class="nav-item">
                 <a class="nav-link" href="/login">{{email}}</a>
             </li>-->

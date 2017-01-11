@@ -10,11 +10,11 @@ angular.module("myApp", [
     "myApp.profile"
 ])
 
-.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
+.config(['$stateProvider', '$urlRouterProvider','$locationProvider', '$httpProvider' , function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider){
         
         $urlRouterProvider.otherwise('/');
 
-        // Allows for urls such as 'example.com/about' & 'example.com/about/'
+        // Redirects www.example.com/about/ to www.example.com/about
         $urlRouterProvider.rule(function($injector, $location) {
 
             var path = $location.path();
@@ -29,12 +29,16 @@ angular.module("myApp", [
 
         });
         
+        // Allows for pretty urls
         $locationProvider.html5Mode(true);
+
+
 }])
 
 
 
-.service('auth', [ '$window' , '$http', function($window, $http){
+
+.service('auth', [ '$window', function($window){
     
     this.getToken = function(){
         return $window.sessionStorage['watchlist-token'];
@@ -63,3 +67,4 @@ angular.module("myApp", [
     }
 
 });
+

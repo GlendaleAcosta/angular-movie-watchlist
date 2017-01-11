@@ -27,7 +27,7 @@ angular.module('myApp.movie', ['ui.router'])
         url: 'https://api.themoviedb.org/3/movie/' + $stateParams.movieId + '?api_key=' + api_key + '&language=en-US'
     })
         .then(function(res){
-            console.log(res.data);
+            
             $scope.genres = res.data.genres;
             $scope.overview = res.data.overview;
             $scope.poster_path = res.data.poster_path;       
@@ -69,8 +69,6 @@ angular.module('myApp.movie', ['ui.router'])
         url: 'https://api.themoviedb.org/3/movie/' + $stateParams.movieId + '/videos?api_key=' + api_key + '&language=en-US'
     })
         .then(function(res){
-            console.log("HEEEEREEEE::::")
-            console.log(res.data);
             $scope.youtubeKey = res.data.results["0"].key;
             $scope.movieSrc = 'https://www.youtube.com/embed/' + $scope.youtubeKey;
         }, function(err){

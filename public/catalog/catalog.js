@@ -24,7 +24,6 @@ angular.module('myApp.catalog', ['ui.router'])
     var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4';
 
     
-
     $scope.onSearch = function(title){
         
         $scope.titleResult = title;
@@ -38,6 +37,7 @@ angular.module('myApp.catalog', ['ui.router'])
             .then(function(res){
                 // console.log(res.data.results);
                 $scope.movies = res.data.results;
+                
                 
                 $timeout(function(){
                     
@@ -74,8 +74,7 @@ angular.module('myApp.catalog', ['ui.router'])
                 var genres_arr = res.data.genres;
                 var genres_length = genres_arr.length;
                 $scope.genres = genres_arr;
-                console.log(genres_arr);
-                console.log(genres_length);
+
 
     
 
@@ -135,7 +134,7 @@ angular.module('myApp.catalog', ['ui.router'])
             url: 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + api_key + '&language=en-US&include_adult=false&sort_by=created_at.asc'
         })
             .then(function(res){
-                console.log(res.data);
+            
                 $scope.movies = res.data.results;
 
                 $timeout(function(){

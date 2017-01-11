@@ -25,7 +25,7 @@ exports.postSignUp = function(req,res,next) {
         
         // If there's a user with the specified email, we can't make an account.
         if (users.length > 0) {
-            return res.json({
+            return res.status(400).json({
                 msg: 'That email already exists!'
             })
         }
@@ -46,15 +46,15 @@ exports.postSignUp = function(req,res,next) {
                         'user',\
                         $1,\
                         $2,\
-                        CURRENT_TIMESTAMP\
+                        CURRENT_TIMESTAMP \
                     )", [ email, hashedPW ])
                         
                 .then(function(){
-                    return res.json({
+                    return res.status(200).json({
                         msg: 'Your account has successfully been created!'
                 })
                 .catch(function(){
-                    return res.json({
+                    return res.status(500).json({
                         msg: 'Your account could not be made. Please try again later.'
                     })
                 })
@@ -62,7 +62,7 @@ exports.postSignUp = function(req,res,next) {
 
             // Error hashing password
             } else {
-                return res.json({
+                return res.status(500).json({
                     msg: "Something really weird went wrong. Please try again later."
                 });
             }
@@ -72,7 +72,7 @@ exports.postSignUp = function(req,res,next) {
 
     })
     .catch(function(err){
-        return res.json({
+        return res.status(500).json({
             msg: "Something about that email didn't seem okay. Please try again later"
         })
     })
@@ -93,6 +93,8 @@ exports.postLogin = function(req,res,next) {
     db.query(
         'SELECT * FROM users WHERE email=${email}', {email})
     .then(function(users){
+        var test = 1;
+        console.log("test: ", test);
 
         // if the email exists
         if(users.length > 0) {
@@ -107,14 +109,14 @@ exports.postLogin = function(req,res,next) {
                     .then(function(){
 
                         // Config jwt token without password and deleted date
-                        user = users[0]
+                        user = users[0];
                         delete user.password;
                         delete user.date_deleted;
 
                         // Create token
                         var token = jwt.sign(email, "process.env.JWT_SECRET_KEY");
 
-                        return res.json({
+                        return res.status(200).json({
                             msg: 'You have successfully logged in as ' + email,
                             user: user,
                             token: token,
@@ -122,13 +124,13 @@ exports.postLogin = function(req,res,next) {
                         })
                     })
                     .catch(function(){
-                        return res.json({
+                        return res.status(500).json({
                             msg: 'Something weird happened. Please try again later.'
                         })
                     })
                 // error hashing password
                 } else {
-                    return res.json({
+                    return res.status(500).json({
                         msg: 'Something really weird happened. Please try again later.'
                     })
                 }
@@ -139,7 +141,7 @@ exports.postLogin = function(req,res,next) {
     })
     // if email does not exist
     .catch(function(){
-        res.json({
+        res.status(400).json({
             msg: 'That email does not exist.'
         })
     })
@@ -152,6 +154,6 @@ exports.postAuthenticate = function(req, res, next) {
     var token = req.body.token;
 
     jwt.verify(token, 'process.env.JWT_SECRET_KEY', function(err, decoded) {
-        res.json({email: decoded}); 
+        return res.status(200).json({email: decoded}); 
     });
 }
