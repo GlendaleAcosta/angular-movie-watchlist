@@ -4,7 +4,7 @@ angular.module('myApp.profile', ['ui.router'])
 
    $stateProvider
         .state('profile', {
-            url: '/profile/:profileId',
+            url: '/profile/:userId',
             views: {
                 'navbar': {
                     templateUrl: 'navbar/navbar.html',

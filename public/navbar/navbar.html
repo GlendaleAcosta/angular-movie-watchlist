@@ -24,9 +24,9 @@
                 <a class="nav-link" href="/login">{{email}}</a>
             </li>-->
             <li ng-mouseenter="enterDropdown()" ng-mouseleave="leaveDropdown()" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" >{{email}}</a>
+                <a class="nav-link dropdown-toggle" ui-sref="profile({userId: userId})" >{{email}}</a>
                 <div ng-show="dropdown" class="show dropdown-menu">
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" ui-sref="profile({userId: userId})">View Profile</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                     <a ng-click="logout()" class="dropdown-item" href="#">Logout</a>
                 </div>

@@ -112,9 +112,9 @@ exports.postLogin = function(req,res,next) {
                         user = users[0];
                         delete user.password;
                         delete user.date_deleted;
-
+                        console.log(user);
                         // Create token
-                        var token = jwt.sign(email, "process.env.JWT_SECRET_KEY");
+                        var token = jwt.sign(user, "process.env.JWT_SECRET_KEY");
 
                         return res.status(200).json({
                             msg: 'You have successfully logged in as ' + email,
@@ -154,6 +154,9 @@ exports.postAuthenticate = function(req, res, next) {
     var token = req.body.token;
 
     jwt.verify(token, 'process.env.JWT_SECRET_KEY', function(err, decoded) {
-        return res.status(200).json({email: decoded}); 
+        
+        return res.status(200).json({
+            user: decoded
+        }); 
     });
 }
