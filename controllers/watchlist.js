@@ -26,12 +26,10 @@ exports.postWatchlist = function(req, res, next){
             var hasMovie = false;
 
             for(var i = 0; i < watchlist_length; i++) {
-                console.log(watchlist_arr[i]);
-                console.log(typeof movieId);
+
                 if(watchlist_arr[i] === movieId) {
                     
                     hasMovie = true;
-                    console.log(hasMovie);
                     break;
                 }
             }
@@ -76,20 +74,18 @@ exports.getWatchlist = function(req, res, next){
     var authHeader = req.headers.authorization;
     var token = authHeader.slice(7);
     
-    res.json({
-        msg: 'test'
-    });
-    
-
     jwt.verify(token, "process.env.JWT_SECRET_KEY" , function(err, user) {
         console.log(user);
         var userId = user.id;
         db.query(
-            'SELECT * FROM watchlists \
+            'SELECT watchlist_movies FROM user_movies \
             WHERE user_id=${userId}', {userId}
         )
-        .then(function(watchlist){
-            console.log(watchlist);
+        .then(function(data){
+            var watchlist = data[0].watchlist_movies;
+            res.status(200).json({
+                watchlist: watchlist
+            })
         })
         .catch(function(err){
 
