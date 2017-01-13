@@ -19,7 +19,7 @@ angular.module('myApp.movie', ['ui.router'])
 
 }])
 
-.controller('movieController', ['$scope', '$stateParams', '$http', '$sce' ,function($scope, $stateParams, $http, $sce){
+.controller('movieController', ['$scope', '$stateParams', '$http', '$sce', 'auth' ,function($scope, $stateParams, $http, $sce, auth){
     
     var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4'
     $http({
@@ -112,5 +112,26 @@ angular.module('myApp.movie', ['ui.router'])
             return $sce.trustAsResourceUrl(movieSrc);
         }
 
+        $scope.addToWatchlist = function(){
+            
+            var movieId = $stateParams.movieId;
+            
+            $http({
+                method: 'POST',
+                data: {
+                    movieId : movieId,
+                    token: auth.getToken()
+                },
+                url: '/watchlist'
+            })
+                .then(function(res){
+                    console.log(res.data);
+                })
+                .catch(function(err){
+
+                })
+
+
+        }
 
 }]);

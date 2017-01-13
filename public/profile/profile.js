@@ -18,7 +18,26 @@ angular.module('myApp.profile', ['ui.router'])
         })
 }])
 
-.controller('profileController', ['$scope', function($scope){
+.controller('profileController', ['$scope', '$http', 'auth' , function($scope, $http, auth){
     
-    
+    var getWatchlist = function(){
+
+        $http({
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + auth.getToken()
+            },
+            url: '/watchlist'
+        })
+        .then(function(res){
+            console.log(res);
+        })
+        .catch(function(err){
+
+        })
+    }
+
+    getWatchlist();
+
+
 }]);

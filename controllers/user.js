@@ -1,17 +1,7 @@
 var pgp = require('pg-promise')();
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
-
-// Database Config
-var connection = {
-    host: 'localhost',
-    port: 5433,
-    database: 'movie_watchlist',
-    user: 'postgres',
-    password: 'rootpw'
-};
-// Database Connection
-var db = pgp(connection);
+var db = require('../database');
 
 exports.postSignUp = function(req,res,next) {
 

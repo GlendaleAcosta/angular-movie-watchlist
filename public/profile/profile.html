@@ -6,12 +6,13 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">Stuff</h4>
+                    <h4 class="card-title">My Profile</h4>
                 </div>
             
                 <ul class="list-group list-group-flush genres-container">
                     <li class="list-group-item genre-item">My Movie Watchlist</li>
-                    <li class="list-group-item genre-item">Favorited Movies</li>
+                    <li class="list-group-item genre-item">My Favorite Movies</li>
+                    <li class="list-group-item genre-item">My Reviews</li>
                     <li class="list-group-item genre-item">Movies Watched</li>
                     <li class="list-group-item genre-item">Settings</li>
                 </ul>
@@ -28,6 +29,18 @@
                 </span>
                 </div>
             </form>
+
+
+            <div class="flex-container">
+                <div class="movie-item" ng-repeat="movie in movieWatchlist">
+                    <a ui-sref="movie({movieId: movieId})">
+                        <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
+                        <p class="mi-title white">{{movie.title}}</p>
+                    </a>
+                </div>
+
+            </div>
+
         </div>
     </div>
 

@@ -34,13 +34,16 @@ app.use(bodyParser.json());
 // Controllers (Route Handlers)
 var homeController = require('./controllers/home.js');
 var userController = require('./controllers/user.js');
+var watchlistController = require('./controllers/watchlist');
 
 
 // Routes
-app.get('/*', homeController.index);
 app.post('/sign-up', userController.postSignUp);
 app.post('/login', userController.postLogin);
 app.post('/authenticate', userController.postAuthenticate);
+app.get('/watchlist', watchlistController.getWatchlist);
+app.post('/watchlist', watchlistController.postWatchlist);
+app.get('/*', homeController.index);
 
 
 // Start Server
