@@ -14,6 +14,7 @@ angular.module('myApp.movie', ['ui.router'])
                     templateUrl: 'movie/movie.html',
                     controller: 'movieController'
                 }
+            
             }
         })
 
