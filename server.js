@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 var homeController = require('./controllers/home.js');
 var userController = require('./controllers/user.js');
 var watchlistController = require('./controllers/watchlist');
+var favoritesController = require('./controllers/favorites.js');
 
 
 // Routes
@@ -43,6 +44,8 @@ app.post('/login', userController.postLogin);
 app.post('/authenticate', userController.postAuthenticate);
 app.get('/watchlist', watchlistController.getWatchlist);
 app.post('/watchlist', watchlistController.postWatchlist);
+app.get('/favorites', favoritesController.getFavoriteMovies);
+app.post('/favorites', favoritesController.postFavoriteMovies);
 app.get('/*', homeController.index);
 
 

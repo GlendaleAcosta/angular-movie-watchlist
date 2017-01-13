@@ -10,7 +10,7 @@ exports.postWatchlist = function(req, res, next){
     
 
     jwt.verify(token, "process.env.JWT_SECRET_KEY" , function(err, user) {
-        var userId = user.id
+        var userId = user.id;
   
         db.query(
             // Get the array of watchlist_movies
@@ -22,42 +22,64 @@ exports.postWatchlist = function(req, res, next){
             
             // Search the array to see if the selected movie exists in their watchlist
             var watchlist_arr = data[0].watchlist_movies;
-            var watchlist_length = data[0].watchlist_movies.length;
-            var hasMovie = false;
 
-            for(var i = 0; i < watchlist_length; i++) {
-
-                if(watchlist_arr[i] === movieId) {
-                    
-                    hasMovie = true;
-                    break;
-                }
-            }
-            
-            if (hasMovie === true) {
-                // The movie exists in their watchlist
-                return res.json({
-                    msg: "The movie is already in your watchlist!"
-                })
-            } else {
-
-                var newMovieIndexNum = watchlist_length + 1;
+            if (watchlist_arr === null) {
+            // if it's the user's first watchlist movie ever
                 db.query(
                     'UPDATE user_movies \
-                    SET watchlist_movies[$1] = $2 \
-                    WHERE user_id=$3' , [newMovieIndexNum, movieId ,userId]
+                    SET watchlist_movies = ARRAY[$1] \
+                    WHERE user_id = $2 ', [movieId, userId]
                 )
                 .then(function(){
-                    res.status(200).json({
-                        msg: "You've added another movie to your watchlist!"
+                    return res.json({
+                        msg: "You've added your first movie to your watchlist!"
                     })
                 })
                 .catch(function(err){
                     console.log(err);
-                    console.log("idk wut happened but it didn't work.");
                 })
+            } else {
+            // if it's at least the user's 2nd watchlist movie ever
+                var watchlist_length = data[0].watchlist_movies.length;
+                var hasMovie = false;
 
-           }
+                for(var i = 0; i < watchlist_length; i++) {
+
+                    if(watchlist_arr[i] === movieId) {
+                        
+                        hasMovie = true;
+                        break;
+                    }
+                }
+                
+                if (hasMovie === true) {
+                    // The movie exists in their watchlist
+                    return res.json({
+                        msg: "The movie is already in your watchlist!"
+                    })
+                } else {
+
+                    var newMovieIndexNum = watchlist_length + 1;
+                    db.query(
+                        'UPDATE user_movies \
+                        SET watchlist_movies[$1] = $2 \
+                        WHERE user_id=$3' , [newMovieIndexNum, movieId ,userId]
+                    )
+                    .then(function(){
+                        res.status(200).json({
+                            msg: "You've added another movie to your watchlist!"
+                        })
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                        console.log("idk wut happened but it didn't work.");
+                    })
+
+                }
+
+
+            }
+
             
         })
         .catch(function(err){

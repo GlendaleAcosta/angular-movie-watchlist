@@ -1,7 +1,7 @@
 angular.module('myApp.navbar', ['ui.router'])
 
 
-.controller('navbarController', ['$scope', 'navData', 'auth', '$http' ,function($scope, navData, auth, $http){
+.controller('navbarController', ['$scope', 'navData', 'auth', '$http', '$state' ,function($scope, navData, auth, $http, $state){
 
     
     
@@ -45,6 +45,7 @@ angular.module('myApp.navbar', ['ui.router'])
     $scope.logout = function(){
         auth.logout();
         $scope.isLoggedIn = false;
+        $state.go('home');
     }
 
 }]);

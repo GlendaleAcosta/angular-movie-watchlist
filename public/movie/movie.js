@@ -131,8 +131,25 @@ angular.module('myApp.movie', ['ui.router'])
                 .catch(function(err){
 
                 })
+        }
 
-
+        $scope.addToFavorites = function(){
+            var movieId = $stateParams.movieId;
+            
+            $http({
+                method: 'POST',
+                data: {
+                    movieId: movieId,
+                    token: auth.getToken()
+                },
+                url: '/favorites'
+            })
+            .then(function(res){
+                console.log(res.data);
+            })
+            .catch(function(err){
+                console.log(err);
+            })
         }
 
 }]);

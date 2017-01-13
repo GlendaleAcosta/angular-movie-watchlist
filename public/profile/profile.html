@@ -10,10 +10,10 @@
                 </div>
             
                 <ul class="list-group list-group-flush genres-container">
-                    <li class="list-group-item genre-item">My Movie Watchlist</li>
-                    <li class="list-group-item genre-item">My Favorite Movies</li>
+                    <li ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})" class="list-group-item genre-item">My Movie Watchlist</li>
+                    <li ui-sref="profile({userId: userId, profilePage: 'favorite-movies'})" class="list-group-item genre-item">My Favorite Movies</li>
                     <li class="list-group-item genre-item">My Reviews</li>
-                    <li class="list-group-item genre-item">Movies Watched</li>
+                    <li ui-sref="profile({userId: userId, profilePage: 'movies-watched'})" class="list-group-item genre-item">Movies Watched</li>
                     <li class="list-group-item genre-item">Settings</li>
                 </ul>
 
@@ -32,7 +32,7 @@
 
 
             <div class="flex-container">
-                <div class="movie-item" ng-repeat="movie in movieWatchlist">
+                <div class="movie-item" ng-repeat="movie in movies">
                     <a href="#">
                         <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
                         <p class="mi-title white">{{movie.title}}</p>
