@@ -116,3 +116,55 @@ exports.getWatchlist = function(req, res, next){
 
 
 }
+
+exports.deleteWatchlist = function(req, res, next){
+    
+    var movieId = req.body.movieId;
+    movieId = parseInt(movieId);
+    var token = req.body.token;
+    // var movieIndex = req.body.movieIndex;
+
+    console.log(req.body);
+
+     jwt.verify(token, "process.env.JWT_SECRET_KEY" , function(err, user) {
+         var userId = user.id;
+         console.log(userId);
+         db.query(
+             'SELECT watchlist_movies \
+             FROM user_movies \
+             WHERE user_id=$1', [userId]
+         )
+         .then(function(data){
+             var watchlist_movies = data[0].watchlist_movies;
+             var watchlist_movies_length = watchlist_movies.length;
+             
+             movieIndex = watchlist_movies.indexOf(movieId);
+             watchlist_movies.splice(movieIndex, 1);
+            //  "UPDATE user_movies SET watchlist_movies = ARRAY [ 330459 ] WHERE user_id = 4;"
+             console.log('UPDATE user_movies \
+             SET watchlist_movies = ARRAY ' + watchlist_movies + 
+              'WHERE user_id=' + userId);
+             db.query(
+                 'UPDATE user_movies \
+                 SET watchlist_movies = $1  \
+                 WHERE user_id= $2', [watchlist_movies, userId]
+             )
+             .then(function(data){
+                 
+                 return res.json({
+                     msg: 'The movie has been deleted from your watchlist!'
+                 })
+             })
+             .catch(function(err){
+                 
+                 console.log(err);
+                 console.log("idk man, there was an error");
+             })
+
+         })
+         .catch(function(err){
+             console.log(err);
+         })
+     })
+
+}

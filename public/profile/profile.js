@@ -40,7 +40,7 @@ angular.module('myApp.profile', ['ui.router'])
         })
 }])
 
-.controller('profileController', ['$scope', '$http', '$stateParams', '$state', '$timeout' , 'auth' , function($scope, $http, $stateParams, $state, $timeout ,auth){
+.controller('profileController', ['$scope', '$http' , '$stateParams', '$state', '$timeout' , 'auth' , function($scope, $http ,$stateParams, $state, $timeout ,auth){
     
     $scope.userId = $stateParams.userId;
     var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4';
@@ -128,10 +128,10 @@ angular.module('myApp.profile', ['ui.router'])
 
     
     
-    $scope.hoverMovie = function(movie) {
-        console.log(movie);
+    $scope.hoverMovie = function(movie, $index) {
+        console.log($index);
+        $scope.movieIndex = $index;
         $scope.modalMovie = movie;
-    
 
         $timeout(function(){
             
@@ -201,6 +201,53 @@ angular.module('myApp.profile', ['ui.router'])
         })
     }
 
+    $scope.addToWatchlist = function(){
+            
+            var movieId = $scope.modalMovie.id;
+            
+            $http({
+                method: 'POST',
+                data: {
+                    movieId : movieId,
+                    token: auth.getToken()
+                },
+                url: '/watchlist'
+            })
+                .then(function(res){
+                    console.log(res.data);
+                })
+                .catch(function(err){
+
+                })
+        }
+
+    $scope.addToWatched = function(){
+        alert("Doesn't work yet");
+    }
+
+    $scope.deleteFromWatchlist = function(){
+        
+        var movieId = $scope.modalMovie.id;
+        var movieIndex = $scope.movieIndex; 
+
+        $http({
+            method: "DELETE",
+            data: {
+                movieId: movieId,
+                movieIndex : movieIndex,
+                token: auth.getToken()
+            },
+            url: "/watchlist"
+        })
+        .then(function(res){
+            console.log("delete from watchlist response:");
+            console.log(res.data);
+            getWatchlist();
+        })
+        .catch(function(err){
+
+        })
+    }
 
 
     if ($stateParams.profilePage === 'movie-watchlist') {

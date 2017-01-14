@@ -45,6 +45,7 @@ app.post('/login', userController.postLogin);
 app.post('/authenticate', userController.postAuthenticate);
 app.get('/watchlist', watchlistController.getWatchlist);
 app.post('/watchlist', watchlistController.postWatchlist);
+app.delete('/watchlist', watchlistController.deleteWatchlist);
 app.get('/favorites', favoritesController.getFavoriteMovies);
 app.post('/favorites', favoritesController.postFavoriteMovies);
 app.get('/*', homeController.index);

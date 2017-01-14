@@ -31,6 +31,7 @@ angular.module("myApp", [
         
         // Allows for pretty urls
         $locationProvider.html5Mode(true);
+        $httpProvider.defaults.headers.delete = { "Content-Type": "application/json;charset=utf-8" };
 
 
 }])

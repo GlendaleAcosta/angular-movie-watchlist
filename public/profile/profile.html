@@ -12,7 +12,6 @@
                 <ul class="list-group list-group-flush genres-container">
                     <li ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})" class="list-group-item genre-item">My Movie Watchlist</li>
                     <li ui-sref="profile({userId: userId, profilePage: 'favorite-movies'})" class="list-group-item genre-item">My Favorite Movies</li>
-                    <li class="list-group-item genre-item">My Reviews</li>
                     <li ui-sref="profile({userId: userId, profilePage: 'movies-watched'})" class="list-group-item genre-item">Movies Watched</li>
                     <li class="list-group-item genre-item">Settings</li>
                 </ul>
@@ -32,7 +31,7 @@
 
             <div class="flex-container space-2-sm">
                 
-                <div ng-mousemove="setModalCoord()"  ng-mouseenter="hoverMovie(movie)" ng-mouseleave="leaveMovie()" class="movie-item" ng-repeat="movie in movies">
+                <div ng-mousemove="setModalCoord()"  ng-mouseenter="hoverMovie(movie, $index)" ng-mouseleave="leaveMovie()" class="movie-item" ng-repeat="movie in movies">
                     <a ui-sref="movie({movieId: movie.id})">
                         <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
                         <p class="mi-title white">{{movie.title}}</p>
@@ -50,7 +49,9 @@
     <p>{{modalMovie.title}}</p>
     <hr>    
     <p class="small">{{modalMovie.overview}}</p>
-    <button class="form-control btn btn-primary">Add to "Watched"</button>
-    <button ng-click="addToFavorites()" class="form-control btn btn-success small">Add to Favorites</button>
-    <button class="form-control btn btn-danger">Delete</button>
+    <p class="small">Rating: <span class="tag tag-warning">{{modalMovie.vote_average}}</span></p>
+    <button ng-click="addToWatchlist()" class="form-control btn btn-primary br-0">Add to Watchlist</button>
+    <button class="form-control btn btn-info br-0">Add to "Watched"</button>
+    <button ng-click="addToFavorites()" class="form-control btn btn-success small br-0">Add to Favorites</button>
+    <button ng-click="deleteFromWatchlist()" class="form-control btn btn-danger br-0">Delete</button>
 </div>
