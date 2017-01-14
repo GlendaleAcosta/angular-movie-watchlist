@@ -17,7 +17,7 @@ angular.module('myApp.navbar', ['ui.router'])
             data: data
         })
         .then(function(res){
-            console.log(res.data);
+    
             $scope.userId = res.data.user.id;
             $scope.email = res.data.user.email;
             $scope.isLoggedIn = true;

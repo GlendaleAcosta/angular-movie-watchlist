@@ -40,7 +40,7 @@ angular.module('myApp.profile', ['ui.router'])
         })
 }])
 
-.controller('profileController', ['$scope', '$http', '$stateParams', '$state' , 'auth' , function($scope, $http, $stateParams, $state ,auth){
+.controller('profileController', ['$scope', '$http', '$stateParams', '$state', '$timeout' , 'auth' , function($scope, $http, $stateParams, $state, $timeout ,auth){
     
     $scope.userId = $stateParams.userId;
     var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4';
@@ -115,6 +115,8 @@ angular.module('myApp.profile', ['ui.router'])
                 .catch(function(err){
                     console.log(err);
                 })
+
+                
             }
 
 
@@ -125,10 +127,70 @@ angular.module('myApp.profile', ['ui.router'])
     }
 
     
+    
+    $scope.hoverMovie = function(movie) {
+        console.log(movie);
+        $scope.modalMovie = movie;
+    
+
+        $timeout(function(){
+            
+            $scope.movieModal = {
+                "display" : "block",
+                "position" : "absolute",
+                "left" : ($scope.coordinates.x + 20) + "px",
+                "top" : ($scope.coordinates.y + 20) + "px",
+                "z-index" : 20
+            }
+
+        $scope.isOverMovie = true;
+        
+        }, 400);
+
+        
+    }
+
+    $scope.setModalCoord = function(){
+        
+        $scope.coordinates = {
+            x: event.pageX,
+            y: event.pageY
+        }
+    
+    }
+
+    $scope.leaveMovie = function() {
+        $scope.isOverMovie = false;
+    }
+
+
+    $scope.leaveModal = function(){
+
+        $scope.isOverMovieModal = false;
+
+    }
+
+    $scope.overMovieModal = function(){
+        $scope.isOverMovieModal = true;   
+    }
+
+    $scope.showMovieModal = function(){
+        
+        if ($scope.isOverMovie === true || $scope.isOverMovieModal === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
     if ($stateParams.profilePage === 'movie-watchlist') {
         getWatchlist();
     } else if ($stateParams.profilePage === 'favorite-movies') {
         getFavoriteMovies();
+    } else if ($stateParams.profilePage === 'movies-watched') {
+        console.log("getting movies watched");
+        // getMoviesWatched();
     }
 
 }]);

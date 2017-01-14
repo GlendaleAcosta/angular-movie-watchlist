@@ -36,6 +36,7 @@ var homeController = require('./controllers/home.js');
 var userController = require('./controllers/user.js');
 var watchlistController = require('./controllers/watchlist');
 var favoritesController = require('./controllers/favorites.js');
+var watchedMoviesController = require('./controllers/watchedMovies.js');
 
 
 // Routes
