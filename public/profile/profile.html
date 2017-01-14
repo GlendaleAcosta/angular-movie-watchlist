@@ -30,7 +30,6 @@
                 </div>
             </form>
 
-
             <div class="flex-container space-2-sm">
                 
                 <div ng-mousemove="setModalCoord()"  ng-mouseenter="hoverMovie(movie)" ng-mouseleave="leaveMovie()" class="movie-item" ng-repeat="movie in movies">
@@ -51,7 +50,7 @@
     <p>{{modalMovie.title}}</p>
     <hr>    
     <p class="small">{{modalMovie.overview}}</p>
-    <button class="form-control btn btn-primary">Watched</button>
-    <button class="form-control btn btn-success small">Add to Favorites</button>
+    <button class="form-control btn btn-primary">Add to "Watched"</button>
+    <button ng-click="addToFavorites()" class="form-control btn btn-success small">Add to Favorites</button>
     <button class="form-control btn btn-danger">Delete</button>
 </div>

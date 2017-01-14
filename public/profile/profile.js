@@ -165,7 +165,6 @@ angular.module('myApp.profile', ['ui.router'])
 
 
     $scope.leaveModal = function(){
-
         $scope.isOverMovieModal = false;
 
     }
@@ -183,7 +182,27 @@ angular.module('myApp.profile', ['ui.router'])
         }
     }
 
-    
+    $scope.addToFavorites = function(){
+        var movieId = $scope.modalMovie.id;
+        
+        $http({
+            method: 'POST',
+            data: {
+                movieId: movieId,
+                token: auth.getToken()
+            },
+            url: '/favorites'
+        })
+        .then(function(res){
+            console.log(res.data);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
+
+
+
     if ($stateParams.profilePage === 'movie-watchlist') {
         getWatchlist();
     } else if ($stateParams.profilePage === 'favorite-movies') {
