@@ -1,6 +1,6 @@
 angular.module('myApp.catalog', ['ui.router'])
 
-.config(['$stateProvider', '$httpProvider', function($stateProvider, $httpProvider){
+.config(['$stateProvider', function($stateProvider){
 
    $stateProvider
         .state('catalog', {
@@ -10,7 +10,7 @@ angular.module('myApp.catalog', ['ui.router'])
                     templateUrl: 'navbar/navbar.html',
                     controller: 'navbarController',
                     resolve: {
-                        authenticate: function($http, auth){
+                        authenticate: function(auth){
                             var token = auth.getToken();
                             if (token !== undefined) {
                                 auth.authenticate(token);
@@ -27,11 +27,9 @@ angular.module('myApp.catalog', ['ui.router'])
 
 }])
 
-.controller('catalogController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
+.controller('catalogController', ['$scope', '$http', '$timeout', 'TMDB_API_KEY', function($scope, $http, $timeout, TMDB_API_KEY){
     
-    var api_key = '1cc7edd7a3b1549a1de32ac8a417a5e4';
 
-    
     $scope.onSearch = function(title){
         
         $scope.titleResult = title;
@@ -40,7 +38,7 @@ angular.module('myApp.catalog', ['ui.router'])
 
         $http({
             method: 'GET',
-            url: 'https://api.themoviedb.org/3/search/movie?api_key=' + api_key + '&language=en-US&query=' + title + '&page=1&include_adult=false' 
+            url: 'https://api.themoviedb.org/3/search/movie?api_key=' + TMDB_API_KEY + '&language=en-US&query=' + title + '&page=1&include_adult=false' 
         })
             .then(function(res){
                 // console.log(res.data.results);
@@ -71,11 +69,11 @@ angular.module('myApp.catalog', ['ui.router'])
     }
 
     var getGenres = function(){
-    $scope.genres = [];
+        $scope.genres = [];
 
         $http({
             method: 'GET',
-            url: 'https://api.themoviedb.org/3/genre/movie/list?api_key=' + api_key + '&language=en-US'
+            url: 'https://api.themoviedb.org/3/genre/movie/list?api_key=' + TMDB_API_KEY + '&language=en-US'
         })
             .then(function(res){
                 
@@ -99,7 +97,7 @@ angular.module('myApp.catalog', ['ui.router'])
 
         $http({
             method: 'GET',
-            url: 'https://api.themoviedb.org/3/movie/popular?api_key=' + api_key + '&language=en-US&page=1'
+            url: 'https://api.themoviedb.org/3/movie/popular?api_key=' + TMDB_API_KEY + '&language=en-US&page=1'
         })
             .then(function(res){
                 $scope.movies = res.data.results;
@@ -139,7 +137,7 @@ angular.module('myApp.catalog', ['ui.router'])
         var genreId = $scope.genres[$index].id;
         $http({
             method: 'GET',
-            url: 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + api_key + '&language=en-US&include_adult=false&sort_by=created_at.asc'
+            url: 'https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + TMDB_API_KEY + '&language=en-US&include_adult=false&sort_by=created_at.asc'
         })
             .then(function(res){
             
@@ -171,10 +169,5 @@ angular.module('myApp.catalog', ['ui.router'])
     $scope.selectMovie = function($index){
         $scope.movieId = $scope.movies[$index].id
     }
-    // imdb api key: edb9cf13-36f4-47e8-a724-e6bcdd1148d5
-    // http://imdb.wemakesites.net/#anhcor-search-imdb
-
-
-// https://api.themoviedb.org/3/genre/28/movies?api_key=1cc7edd7a3b1549a1de32ac8a417a5e4&language=en-US&include_adult=false&sort_by=created_at.asc
-//https://api.themoviedb.org/3/genre/4movies?api_key=1cc7edd7a3b1549a1de32ac8a417a5e4&language=en-US&include_adult=false&sort_by=created_at.asc 
+   
 }])

@@ -135,6 +135,7 @@ angular.module('myApp.movie', ['ui.router'])
             })
                 .then(function(res){
                     console.log(res.data);
+                    $scope.modalMsg = res.data.msg;
                 })
                 .catch(function(err){
 
@@ -154,10 +155,16 @@ angular.module('myApp.movie', ['ui.router'])
             })
             .then(function(res){
                 console.log(res.data);
+                $scope.modalMsg = res.data.msg;
             })
             .catch(function(err){
                 console.log(err);
             })
+        }
+
+        $scope.exitModal = function(){
+            console.log("exiting modal");
+            $scope.modalMsg = null;
         }
 
 }]);
