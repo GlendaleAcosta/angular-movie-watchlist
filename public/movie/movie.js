@@ -82,8 +82,11 @@ angular.module('myApp.movie', ['ui.router'])
         url: 'https://api.themoviedb.org/3/movie/' + $stateParams.movieId + '/videos?api_key=' + api_key + '&language=en-US'
     })
         .then(function(res){
+            
+            $scope.videos = res.data.results;
+            console.log($scope.videos);
             $scope.youtubeKey = res.data.results["0"].key;
-            $scope.movieSrc = 'https://www.youtube.com/embed/' + $scope.youtubeKey;
+            $scope.videoSrc = 'https://www.youtube.com/embed/' + $scope.youtubeKey;
         }, function(err){
             console.log(err);
         })
@@ -120,9 +123,13 @@ angular.module('myApp.movie', ['ui.router'])
             }
         }
 
-    
-        $scope.trailerUrl = function(movieSrc) {
-            return $sce.trustAsResourceUrl(movieSrc);
+        $scope.playVideo = function(videoKey){
+            $scope.videoSrc = 'https://www.youtube.com/embed/' + videoKey;
+            // $scope.trailerUrl();
+            $scope.videoModal = true;
+        }
+        $scope.trailerUrl = function(videoSrc) {
+            return $sce.trustAsResourceUrl(videoSrc);
         }
 
         $scope.addToWatchlist = function(){
@@ -188,6 +195,11 @@ angular.module('myApp.movie', ['ui.router'])
         $scope.exitModal = function(){
             
             $scope.modalMsg = null;
+        }
+
+        $scope.exitVideoModal = function(){
+            
+            $scope.videoModal = null;
         }
 
 }]);
