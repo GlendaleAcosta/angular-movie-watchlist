@@ -13,6 +13,10 @@ angular
                     'page': {
                         templateUrl: 'about/about.html',
                         controller: 'aboutController'
+                    },
+                    'footer': {
+                        templateUrl: 'footer/footer.html',
+                        controller: 'footerController'
                     }
                 }
             })

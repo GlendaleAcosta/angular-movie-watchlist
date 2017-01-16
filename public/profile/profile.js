@@ -49,6 +49,10 @@ angular.module('myApp.profile', ['ui.router'])
                             
                         }
                     }
+                },
+                'footer': {
+                    templateUrl: 'footer/footer.html',
+                    controller: 'footerController'
                 }
             }
         })
@@ -141,7 +145,7 @@ angular.module('myApp.profile', ['ui.router'])
     }
 
     
-    $scope.modalWidth = $window.screen.width * 0.25;
+    $scope.modalWidth = $window.screen.width * 0.3;
     $scope.hoverMovie = function(movie, $index) {
         
         $scope.movieIndex = $index;
@@ -152,13 +156,9 @@ angular.module('myApp.profile', ['ui.router'])
             var x = $scope.coordinates.x;
             var y = $scope.coordinates.y;
             var weiner = $window.screen.width - x;
-            console.log(weiner);
-            console.log($scope.modalWidth );
+            
             if(weiner < $scope.modalWidth) {
-                console.log("HERE");
-                // $scope.coordinates = {
-                //     x : ($window.screen.width - x)
-                // }
+                
 
                 $scope.movieModal = {
                     "display" : "block",

@@ -7,7 +7,7 @@
         height: 230px
     @media only screen and (min-width: 1600px)
         height: 230px
-
+    
 .movie-item
     width: 18.5%
     margin: 5px
@@ -16,6 +16,25 @@
     overflow: hidden
     z-index: 5
     box-sizing: border-box !important
+    animation: leaveMovieItem 0.15s ease-in-out both
+    &:hover
+        animation: enterMovieItem 0.2s ease-in-out both
+
+@keyframes enterMovieItem
+    from
+        box-shadow: 0px 0px 0px white
+        opacity: 1
+    to 
+        box-shadow: 5px 5px 5px $darkGreyShadow
+        opacity: 0.85
+
+@keyframes leaveMovieItem
+    from
+        box-shadow: 5px 5px 5px $darkGreyShadow
+        opacity: 0.85
+    to 
+        box-shadow: 0 0 0 $darkGreyShadow
+        opacity: 1
 
 
 .mi-title 
@@ -43,4 +62,9 @@
 .genre-item:last-child 
     border-bottom: none
 
+.genre-block
+    background-color: $mainMaroon
+    
+.genre-shadow
+    box-shadow:  1px 1px 6px $greyShadow;
 

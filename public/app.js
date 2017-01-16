@@ -1,6 +1,7 @@
 angular.module("myApp", [
     "ui.router",
     "myApp.home",
+    "myApp.footer",
     "myApp.about",
     "myApp.catalog",
     "myApp.navbar",

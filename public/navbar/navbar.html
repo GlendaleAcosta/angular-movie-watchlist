@@ -26,8 +26,8 @@
             <li ng-mouseenter="enterDropdown()" ng-mouseleave="leaveDropdown()" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})" >{{email}}</a>
                 <div ng-show="dropdown" class="show dropdown-menu">
-                    <a class="dropdown-item" ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})">View Profile</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})">View Profile/Movies</a>
+                    <a class="dropdown-item" href="#">Settings</a>
                     <a ng-click="logout()" class="dropdown-item" href="#">Logout</a>
                 </div>
             </li>

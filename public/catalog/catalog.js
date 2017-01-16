@@ -21,6 +21,10 @@ angular.module('myApp.catalog', ['ui.router'])
                 'page': {
                     templateUrl: 'catalog/catalog.html',
                     controller: 'catalogController' 
+                },
+                'footer': {
+                    templateUrl: 'footer/footer.html',
+                    controller: 'footerController'
                 }
             }
         })

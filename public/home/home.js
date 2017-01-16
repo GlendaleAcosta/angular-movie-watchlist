@@ -21,6 +21,10 @@ angular.module('myApp.home', ['ui.router', 'ngAnimate'])
                 'page': {
                     templateUrl: 'home/home.html',
                     controller: 'homeController'
+                },
+                'footer': {
+                    templateUrl: 'footer/footer.html',
+                    controller: 'footerController'
                 }
             }
         })

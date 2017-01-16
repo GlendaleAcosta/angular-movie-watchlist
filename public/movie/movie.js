@@ -21,6 +21,10 @@ angular.module('myApp.movie', ['ui.router'])
                 'page': {
                     templateUrl: 'movie/movie.html',
                     controller: 'movieController'
+                },
+                'footer': {
+                    templateUrl: 'footer/footer.html',
+                    controller: 'footerController'
                 }
             
             }
