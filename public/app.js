@@ -39,7 +39,30 @@ angular.module("myApp", [
 
 
 
-.service('auth', [ '$window', function($window){
+.service('auth', [ '$window', '$http', 'navData', function($window, $http, navData){
+    this.authenticate = function(token){
+        var user;
+        console.log(token);
+        $http({
+            method: 'POST',
+            data: {
+                token: token
+            },
+            url: '/authenticate'
+        })
+        .then(function(res){
+
+           user = res.data.user;
+           navData.setUser(user);
+            
+            
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+        
+        return user;
+    }
     
     this.getToken = function(){
         return $window.sessionStorage['watchlist-token'];
@@ -60,6 +83,8 @@ angular.module("myApp", [
     this.user = null;
 
     this.setUser = function(user) {
+        console.log("SET USER::: ");
+        console.log(user);
         this.user = user;
     }
 

@@ -16,6 +16,14 @@ var app = express();
 var PORT = process.env.PORT || 3017;
 
 
+// Controllers (Route Handlers)
+var homeController = require('./controllers/home.js');
+var userController = require('./controllers/user.js');
+var watchlistController = require('./controllers/watchlist');
+var favoritesController = require('./controllers/favorites.js');
+var watchedMoviesController = require('./controllers/watchedMovies.js');
+var authorizeController = require('./controllers/authorize');
+
 // Middleware
 app.use(cors());
 app.use(sassMiddleware({
@@ -28,15 +36,8 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname ,'public')));
 app.use(bodyParser.json());
+app.use('*', authorizeController);
 
-
-
-// Controllers (Route Handlers)
-var homeController = require('./controllers/home.js');
-var userController = require('./controllers/user.js');
-var watchlistController = require('./controllers/watchlist');
-var favoritesController = require('./controllers/favorites.js');
-var watchedMoviesController = require('./controllers/watchedMovies.js');
 
 
 // Routes
@@ -56,7 +57,3 @@ app.listen( PORT , () => {
     console.log("App is up on port " + PORT);
 });
 
-// login
-// if valid email and password, the server gives a valid jwt
-
-// Whenever the user makes a request, angular/server validates the jwt 

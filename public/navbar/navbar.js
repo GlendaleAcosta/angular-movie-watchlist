@@ -5,29 +5,12 @@ angular.module('myApp.navbar', ['ui.router'])
 
     
     
-    
-    var tokenJWT = auth.getToken();
-    if (tokenJWT !== undefined) {
-        var data = {
-            token: tokenJWT
-        }
-        $http({
-            method: 'POST',
-            url: '/authenticate',
-            data: data
-        })
-        .then(function(res){
-    
-            $scope.userId = res.data.user.id;
-            $scope.email = res.data.user.email;
-            $scope.isLoggedIn = true;
-        })
-        .catch(function(err){
-
-        })
-        // var user = navData.getUser();
-        // $scope.email = user.email;
-
+    if (navData.getUser() !== null && navData.getUser() !== undefined) {
+        
+        var user = navData.getUser();
+        $scope.isLoggedIn = true;
+        $scope.email = user.email;
+        $scope.userId = user.id;
     } else {
         $scope.isLoggedIn = false;
     }
@@ -44,6 +27,7 @@ angular.module('myApp.navbar', ['ui.router'])
 
     $scope.logout = function(){
         auth.logout();
+        navData.setUser(null);
         $scope.isLoggedIn = false;
         $state.go('home');
     }

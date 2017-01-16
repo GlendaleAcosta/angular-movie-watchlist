@@ -8,7 +8,15 @@ angular.module('myApp.home', ['ui.router', 'ngAnimate'])
             views: {
                 'navbar': {
                     templateUrl: 'navbar/navbar.html',
-                    controller: 'navbarController'
+                    controller: 'navbarController',
+                    resolve: {
+                        authenticate: function($http, auth){
+                            var token = auth.getToken();
+                            if (token !== undefined) {
+                                auth.authenticate(token);
+                            }   
+                        }
+                    }
                 },
                 'page': {
                     templateUrl: 'home/home.html',

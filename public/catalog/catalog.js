@@ -8,7 +8,15 @@ angular.module('myApp.catalog', ['ui.router'])
             views: {
                 'navbar': {
                     templateUrl: 'navbar/navbar.html',
-                    controller: 'navbarController'
+                    controller: 'navbarController',
+                    resolve: {
+                        authenticate: function($http, auth){
+                            var token = auth.getToken();
+                            if (token !== undefined) {
+                                auth.authenticate(token);
+                            }   
+                        }
+                    }
                 },
                 'page': {
                     templateUrl: 'catalog/catalog.html',
