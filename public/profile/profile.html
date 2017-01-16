@@ -12,7 +12,6 @@
                 <ul class="list-group list-group-flush genres-container">
                     <li ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})" class="list-group-item genre-item">My Movie Watchlist</li>
                     <li ui-sref="profile({userId: userId, profilePage: 'favorite-movies'})" class="list-group-item genre-item">My Favorite Movies</li>
-                    <li ui-sref="profile({userId: userId, profilePage: 'movies-watched'})" class="list-group-item genre-item">Movies Watched</li>
                     <li class="list-group-item genre-item">Settings</li>
                 </ul>
 
@@ -46,12 +45,11 @@
 </div>
 
 <div ng-mouseleave="leaveModal()" ng-mouseover="overMovieModal()" ng-show="showMovieModal()" ng-style="movieModal" class="movie-modal col-md-3 card">
-    <p>{{modalMovie.title}}</p>
-    <hr>    
+    <p class="space-top">{{modalMovie.title}}</p>
+    <!--<hr>    -->
     <p class="small">{{modalMovie.overview}}</p>
     <p class="small">Rating: <span class="tag tag-warning">{{modalMovie.vote_average}}</span></p>
     <button ng-click="addToWatchlist()" class="form-control btn btn-primary br-0">Add to Watchlist</button>
-    <button class="form-control btn btn-info br-0">Add to "Watched"</button>
     <button ng-click="addToFavorites()" class="form-control btn btn-success small br-0">Add to Favorites</button>
-    <button ng-click="deleteFromWatchlist()" class="form-control btn btn-danger br-0">Delete</button>
+    <button ng-click="deleteFromWatchlist()" class="form-control btn btn-danger br-0 space-btm">Delete</button>
 </div>

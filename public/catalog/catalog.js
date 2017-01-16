@@ -20,7 +20,7 @@ angular.module('myApp.catalog', ['ui.router'])
                 },
                 'page': {
                     templateUrl: 'catalog/catalog.html',
-                    controller: 'catalogController'
+                    controller: 'catalogController' 
                 }
             }
         })
