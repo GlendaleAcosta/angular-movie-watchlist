@@ -135,12 +135,22 @@ angular.module('myApp.movie', ['ui.router'])
             })
                 .then(function(res){
                     console.log(res.data);
+                    $scope.successfullyAdded = res.data.hasAddedToWatchlist;
+                    
+                    if ($scope.successfullyAdded === true) {
+                        $scope.alertStatus = 'alert-success';
+                        $scope.modalSuccess = "Success";
+                    } else {
+                        $scope.alertStatus = 'alert-danger';
+                        $scope.modalSuccess = "Failed";
+                    }
                     $scope.modalMsg = res.data.msg;
                 })
                 .catch(function(err){
 
                 })
         }
+        
 
         $scope.addToFavorites = function(){
             var movieId = $stateParams.movieId;
@@ -155,6 +165,15 @@ angular.module('myApp.movie', ['ui.router'])
             })
             .then(function(res){
                 console.log(res.data);
+                $scope.successfullyAdded = res.data.hasAddedToFavorites;
+                console.log($scope.successfullyAdded);
+                if ($scope.successfullyAdded === true) {
+                    $scope.alertStatus = 'alert-success';
+                    $scope.modalSuccess = "Success";
+                } else {
+                    $scope.alertStatus = 'alert-danger';
+                    $scope.modalSuccess = "Failed";
+                }
                 $scope.modalMsg = res.data.msg;
             })
             .catch(function(err){
@@ -163,7 +182,7 @@ angular.module('myApp.movie', ['ui.router'])
         }
 
         $scope.exitModal = function(){
-            console.log("exiting modal");
+            
             $scope.modalMsg = null;
         }
 

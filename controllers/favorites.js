@@ -61,6 +61,7 @@ exports.postFavoriteMovies = function(req,res, next) {
                 )
                 .then(function(){
                     return res.json({
+                        hasAddedToFavorites: true,
                         msg: "You've added your first movie to your list of favorite movies!"
                     })
                 })
@@ -83,8 +84,9 @@ exports.postFavoriteMovies = function(req,res, next) {
                 }
 
                 if (hasMovie === true) {
-                    // The movie exists in their watchlist
+                    // The movie exists in their list of favorite movies
                     return res.json({
+                        hasAddedtoFavorites: false,
                         msg: "The movie is already in your favorite movies list!"
                     })
                 } else {
@@ -97,6 +99,7 @@ exports.postFavoriteMovies = function(req,res, next) {
                     )
                     .then(function(){
                         return res.status(200).json({
+                            hasAddedtoFavorites: true,
                             msg: "You've added another movie to your list of favorite movies!"
                         })
                     })

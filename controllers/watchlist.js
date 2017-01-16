@@ -32,6 +32,7 @@ exports.postWatchlist = function(req, res, next){
                 )
                 .then(function(){
                     return res.json({
+                        hasAddedToWatchlist: true,
                         msg: "You've added your first movie to your watchlist!"
                     })
                 })
@@ -55,6 +56,7 @@ exports.postWatchlist = function(req, res, next){
                 if (hasMovie === true) {
                     // The movie exists in their watchlist
                     return res.json({
+                        hasAddedToWatchlist: false,
                         msg: "The movie is already in your watchlist!"
                     })
                 } else {
@@ -67,6 +69,7 @@ exports.postWatchlist = function(req, res, next){
                     )
                     .then(function(){
                         res.status(200).json({
+                            hasAddedToWatchlist: true,
                             msg: "You've added another movie to your watchlist!"
                         })
                     })
