@@ -44,12 +44,13 @@
 
 </div>
 
-<div ng-mouseleave="leaveModal()" ng-mouseover="overMovieModal()" ng-show="showMovieModal()" ng-style="movieModal" class="movie-modal col-md-3 card">
+<div ng-cloak ng-mouseleave="leaveModal()" ng-mouseover="overMovieModal()" ng-show="showMovieModal()" ng-style="movieModal" class="movie-modal col-md-3 card">
     <p class="space-top">{{modalMovie.title}}</p>
     <!--<hr>    -->
     <p class="small">{{modalMovie.overview}}</p>
     <p class="small">Rating: <span class="tag tag-warning">{{modalMovie.vote_average}}</span></p>
-    <button ng-click="addToWatchlist()" class="form-control btn btn-primary br-0">Add to Watchlist</button>
-    <button ng-click="addToFavorites()" class="form-control btn btn-success small br-0">Add to Favorites</button>
-    <button ng-click="deleteFromWatchlist()" class="form-control btn btn-danger br-0 space-btm">Delete from Watchlist</button>
+    <button ng-show="addWatchListBtn" ng-click="addToWatchlist()" class="form-control btn btn-primary br-0">Add to Watchlist</button>
+    <button ng-show="addFavBtn" ng-click="addToFavorites()" class="form-control btn btn-success small br-0">Add to Favorites</button>
+    <button ng-show="delWatchListBtn" ng-click="deleteFromWatchlist()" class="form-control btn btn-danger br-0 space-btm">Delete from Watchlist</button>
+    <button ng-show="delFavBtn" ng-click="deleteFromFavorites()" class="form-control btn btn-danger br-0 space-btm">Delete from Favorites</button>
 </div>

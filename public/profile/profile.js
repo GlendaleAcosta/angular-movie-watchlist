@@ -102,7 +102,7 @@ angular.module('myApp.profile', ['ui.router'])
     }
 
     var getFavoriteMovies = function(){
-
+        
         $http({
             method: 'GET',
             headers: {
@@ -124,7 +124,7 @@ angular.module('myApp.profile', ['ui.router'])
 
                 $http({
                     method: 'GET',
-                    url: 'https://api.themoviedb.org/3/movie/' + favoriteMovies[i] + '?api_key=' + api_key + '&language=en-US'
+                    url: 'https://api.themoviedb.org/3/movie/' + favoriteMovies[i].movie_id + '?api_key=' + api_key + '&language=en-US'
                 })
                 .then(function(res){
                     
@@ -150,10 +150,10 @@ angular.module('myApp.profile', ['ui.router'])
         
         $scope.movieIndex = $index;
         $scope.modalMovie = movie;
-        $scope.isOverMovie = true;
 
         $timeout(function(){
             
+            $scope.isOverMovie = true;
             var x = $scope.coordinates.x;
             var y = $scope.coordinates.y;
             var weiner = $window.screen.width - x;
@@ -284,11 +284,40 @@ angular.module('myApp.profile', ['ui.router'])
 
         })
     }
+    $scope.deleteFromFavorites = function(){
+        var movieId = $scope.modalMovie.id;
+        var movieIndex = $scope.movieIndex; 
+
+        $http({
+            method: "DELETE",
+            data: {
+                movieId : movieId,
+                movieIndex : movieIndex,
+                token: auth.getToken()
+            },
+            url: "/favorites"
+        })
+        .then(function(res){
+            console.log(res.data);
+        })
+        .catch(function(err){
+            
+        })
+    }
 
 
     if ($stateParams.profilePage === 'movie-watchlist') {
         getWatchlist();
+        $scope.addWatchListBtn = false;
+        $scope.delWatchListBtn = true;
+        $scope.addFavBtn = true;
+        $scope.delFavBtn = false;
     } else if ($stateParams.profilePage === 'favorite-movies') {
+        
+        $scope.addWatchListBtn = true;
+        $scope.delWatchListBtn = false;
+        $scope.addFavBtn = false;
+        $scope.delFavBtn = true;
         getFavoriteMovies();
     } else if ($stateParams.profilePage === 'movies-watched') {
         console.log("getting movies watched");

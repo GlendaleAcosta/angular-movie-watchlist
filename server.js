@@ -49,6 +49,7 @@ app.post('/watchlist', watchlistController.postWatchlist);
 app.delete('/watchlist', watchlistController.deleteWatchlist);
 app.get('/favorites', favoritesController.getFavoriteMovies);
 app.post('/favorites', favoritesController.postFavoriteMovies);
+app.delete('/favorites', favoritesController.deleteFavoriteMovies);
 app.get('/*', homeController.index);
 
 
