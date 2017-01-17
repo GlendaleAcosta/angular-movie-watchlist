@@ -1,4 +1,4 @@
-angular.module('myApp.profile', ['ui.router'])
+angular.module('myApp.profile', ['ui.router', 'ngAnimate'])
 
 .config(['$stateProvider', function($stateProvider){
 
@@ -219,7 +219,7 @@ angular.module('myApp.profile', ['ui.router'])
 
     $scope.addToFavorites = function(){
         var movieId = $scope.modalMovie.id;
-        
+        $scope.btmModalMsg = null;
         $http({
             method: 'POST',
             data: {
@@ -230,6 +230,15 @@ angular.module('myApp.profile', ['ui.router'])
         })
         .then(function(res){
             console.log(res.data);
+            $scope.btmModalSuccess = res.data.hasAddedFavMovie;
+            if($scope.btmModalSuccess === true) {
+                $scope.alertStatus = 'alert-success';
+                $scope.modalSuccess = "Movie Added!"
+            } else {
+                $scope.alertStatus = 'alert-danger';
+                $scope.modalSuccess = "Failed to add!"
+            }
+            $scope.btmModalMsg = res.data.msg;
         })
         .catch(function(err){
             console.log(err);
@@ -239,7 +248,7 @@ angular.module('myApp.profile', ['ui.router'])
     $scope.addToWatchlist = function(){
             
             var movieId = $scope.modalMovie.id;
-            
+            $scope.btmModalMsg = null;
             $http({
                 method: 'POST',
                 data: {
@@ -250,6 +259,16 @@ angular.module('myApp.profile', ['ui.router'])
             })
                 .then(function(res){
                     console.log(res.data);
+
+                    $scope.btmModalSuccess = res.data.hasAddedToWatchlist;
+                    if($scope.btmModalSuccess === true) {
+                        $scope.alertStatus = 'alert-success';
+                        $scope.modalSuccess = "Movie Added!"
+                    } else {
+                        $scope.alertStatus = 'alert-danger';
+                        $scope.modalSuccess = "Failed to add!"
+                    }
+                    $scope.btmModalMsg = res.data.msg;
                 })
                 .catch(function(err){
 
@@ -261,7 +280,7 @@ angular.module('myApp.profile', ['ui.router'])
     }
 
     $scope.deleteFromWatchlist = function(){
-        
+        $scope.btmModalMsg = null;
         var movieId = $scope.modalMovie.id;
         var movieIndex = $scope.movieIndex; 
 
@@ -277,8 +296,22 @@ angular.module('myApp.profile', ['ui.router'])
         .then(function(res){
             console.log("delete from watchlist response:");
             console.log(res.data);
-            // getWatchlist();
-            $state.reload()
+            $scope.btmModalSuccess = res.data.hasDeletedMovie;
+            if($scope.btmModalSuccess === true) {
+                $scope.alertStatus = 'alert-success';
+                $scope.modalSuccess = "Movie deleted!"
+            } else {
+                $scope.alertStatus = 'alert-danger';
+                $scope.modalSuccess = "Failed:"
+            }
+            $scope.btmModalMsg = res.data.msg;
+
+        
+            // $state.reload()
+        })
+        .then(function(){
+            getWatchlist();
+
         })
         .catch(function(err){
 
@@ -287,7 +320,7 @@ angular.module('myApp.profile', ['ui.router'])
     $scope.deleteFromFavorites = function(){
         var movieId = $scope.modalMovie.id;
         var movieIndex = $scope.movieIndex; 
-
+        $scope.btmModalMsg = null;
         $http({
             method: "DELETE",
             data: {
@@ -299,10 +332,23 @@ angular.module('myApp.profile', ['ui.router'])
         })
         .then(function(res){
             console.log(res.data);
+            $scope.btmModalSuccess = res.data.hasDeletedFavMovie;
+            if($scope.btmModalSuccess === true) {
+                $scope.alertStatus = 'alert-success';
+                $scope.modalSuccess = "Movie deleted!"
+            } else {
+                $scope.alertStatus = 'alert-danger';
+            }
+            $scope.btmModalMsg = res.data.msg;
         })
         .catch(function(err){
             
         })
+    }
+    
+
+    $scope.removeBtmModal = function(){
+        $scope.btmModalMsg = null;
     }
 
 
@@ -324,5 +370,6 @@ angular.module('myApp.profile', ['ui.router'])
         console.log("getting movies watched");
         // getMoviesWatched();
     }
+    
 
 }]);

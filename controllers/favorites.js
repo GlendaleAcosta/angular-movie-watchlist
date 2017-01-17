@@ -62,13 +62,14 @@ exports.postFavoriteMovies = function(req,res, next) {
             
             console.log(data);
             if(data.length === 0) {
-                console.log("this movies doesn't exist, we just need to add it now");
+                
                 db.query(
                     'INSERT INTO favorite_movies (user_id, movie_id) \
                     VALUES ( $1, $2 )', [userId, movieId]
                 )
                 .then(function(data){
                     return res.json({
+                        hasAddedFavMovie: true,
                         msg: "You've added a movie to your favorite movies list!"
                     })
                 })
@@ -76,8 +77,9 @@ exports.postFavoriteMovies = function(req,res, next) {
                     // Error adding movie to database
                 })
             } else{
-                console.log("this movies is already in your favorites list");
+                
                 return res.json({
+                    hasAddedFavMovie: false,
                     msg: "This movie is already in your favorite movies list!"
                 })
             }
@@ -182,7 +184,8 @@ exports.deleteFavoriteMovies = function(req, res, next){
                      WHERE user_id = $1 and movie_id = $2 ', [userId, movieId]
                  )
                  .then(function(data){
-                     res.json({
+                     return res.json({
+                         hasDeletedFavMovie: true,
                          msg: 'This movie has been deleted from your favorite movies list!'
                      })
                  })

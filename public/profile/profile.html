@@ -59,3 +59,11 @@
     <button ng-show="delWatchListBtn" ng-click="deleteFromWatchlist()" class="form-control btn btn-danger br-0 space-btm">Delete from Watchlist</button>
     <button ng-show="delFavBtn" ng-click="deleteFromFavorites()" class="form-control btn btn-danger br-0 space-btm">Delete from Favorites</button>
 </div>
+
+<div ng-click="removeBtmModal()" ng-class="alertStatus" ng-show="btmModalMsg" class="modal-btm-container alert p-0 br-0">
+    <div class="container">
+        <div ng-class="alertStatus" class="col-md-12 offset-md-1 alert m-0 br-none">
+            <p class="lead m-0"><span class="alert-link">{{modalSuccess}} </span> {{btmModalMsg}}</p>
+        </div>
+    </div>
+</div>
