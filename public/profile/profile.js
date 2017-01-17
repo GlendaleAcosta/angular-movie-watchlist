@@ -308,12 +308,13 @@ angular.module('myApp.profile', ['ui.router'])
 
     if ($stateParams.profilePage === 'movie-watchlist') {
         getWatchlist();
+        $scope.pageTitle = "My Movie Watchlist:"
         $scope.addWatchListBtn = false;
         $scope.delWatchListBtn = true;
         $scope.addFavBtn = true;
         $scope.delFavBtn = false;
     } else if ($stateParams.profilePage === 'favorite-movies') {
-        
+        $scope.pageTitle = "My Favorite Movies:"
         $scope.addWatchListBtn = true;
         $scope.delWatchListBtn = false;
         $scope.addFavBtn = false;
