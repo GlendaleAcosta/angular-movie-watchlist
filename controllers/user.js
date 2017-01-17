@@ -88,7 +88,7 @@ exports.postLogin = function(req,res,next) {
 
         // if the email exists
         if(users.length > 0) {
-            bcrypt.compare(email, users[0].password, function(err, response){
+            bcrypt.compare(password, users[0].password, function(err, response){
 
                 // Password hashed corretly
                 if (!err) {
@@ -120,8 +120,8 @@ exports.postLogin = function(req,res,next) {
                     })
                 // error hashing password
                 } else {
-                    return res.status(500).json({
-                        msg: 'Something really weird happened. Please try again later.'
+                    return res.status(300).json({
+                        msg: 'Incorrect password or email.'
                     })
                 }
 
