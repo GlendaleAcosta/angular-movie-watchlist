@@ -10,11 +10,18 @@ angular.module('myApp.profile', ['ui.router', 'ngAnimate'])
                     templateUrl: 'navbar/navbar.html',
                     controller: 'navbarController',
                     resolve: {
-                        authenticate: function($http, auth, navData){
+                        authenticate: function($http, auth, navData, $timeout, $stateParams, $state){
                             var token = auth.getToken();
                             if (token !== undefined) {
-                                auth.authenticate(token);
-                                
+                                auth.authenticate(token, function(){
+                                    var user = navData.getUser();
+                                    
+                                    $stateParams.userId = parseInt($stateParams.userId);
+                                    if(user.id !== $stateParams.userId){
+                                        $state.go('home');
+                                    }
+                                });
+                           
                             } else {
                                 $state.go('home');
                             } 

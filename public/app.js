@@ -39,7 +39,7 @@ angular.module("myApp", [
 .constant('TMDB_API_KEY', '1cc7edd7a3b1549a1de32ac8a417a5e4')
 
 .service('auth', [ '$window', '$http', 'navData', function($window, $http, navData){
-    this.authenticate = function(token){
+    this.authenticate = function(token, callback){
         
         $http({
             method: 'POST',
@@ -52,9 +52,10 @@ angular.module("myApp", [
 
            var user = res.data.user;
            navData.setUser(user);
+           if (callback){
+                callback();
+           }
            return user;
-            
-            
         })
         .catch(function(err){
             console.log(err);
