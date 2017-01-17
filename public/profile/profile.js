@@ -84,7 +84,7 @@ angular.module('myApp.profile', ['ui.router'])
 
                 $http({
                     method: 'GET',
-                    url: 'https://api.themoviedb.org/3/movie/' + watchlist_arr[i] + '?api_key=' + api_key + '&language=en-US'
+                    url: 'https://api.themoviedb.org/3/movie/' + watchlist_arr[i].movie_id + '?api_key=' + api_key + '&language=en-US'
                 })
                 .then(function(res){
                     $scope.movies.push(res.data);
@@ -150,6 +150,7 @@ angular.module('myApp.profile', ['ui.router'])
         
         $scope.movieIndex = $index;
         $scope.modalMovie = movie;
+        $scope.isOverMovie = true;
 
         $timeout(function(){
             
@@ -178,10 +179,10 @@ angular.module('myApp.profile', ['ui.router'])
                 }
             }
             
+        
+            
 
-        $scope.isOverMovie = true;
-
-        }, 500);
+        }, 300);
         
         
     }
@@ -203,19 +204,9 @@ angular.module('myApp.profile', ['ui.router'])
     
     }
 
-    $scope.leaveMovie = function() {
-        $scope.isOverMovie = false;
-    }
-
-
-    $scope.leaveModal = function(){
-        $scope.isOverMovieModal = false;
-
-    }
-
-    $scope.overMovieModal = function(){
-        $scope.isOverMovieModal = true;   
-    }
+    $scope.leaveMovie = function(){ $scope.isOverMovie = false; }
+    $scope.leaveModal = function(){ $scope.isOverMovieModal = false; }
+    $scope.overMovieModal = function(){ $scope.isOverMovieModal = true; }
 
     $scope.showMovieModal = function(){
         
@@ -286,7 +277,8 @@ angular.module('myApp.profile', ['ui.router'])
         .then(function(res){
             console.log("delete from watchlist response:");
             console.log(res.data);
-            getWatchlist();
+            // getWatchlist();
+            $state.reload()
         })
         .catch(function(err){
 
