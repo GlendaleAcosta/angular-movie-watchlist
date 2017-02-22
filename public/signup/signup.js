@@ -22,7 +22,7 @@ angular.module('myApp.signup', ['ui.router'])
 
 }])
 
-.controller('signupController', ['$scope', '$http', 'validateUser' ,function($scope, $http, validateUser){
+.controller('signupController', ['$scope', '$http', '$state' , 'validateUser' ,function($scope, $http, $state ,validateUser){
     
     $scope.signUp = function(email, password){
         
@@ -38,9 +38,13 @@ angular.module('myApp.signup', ['ui.router'])
         })
         .then(function(res){
             console.log(res.data);
+            $scope.msg = res.data.msg;
+            $state.go('login');
         })
         .catch(function(err){
+            console.log("ERROR");
             console.log(err);
+            $scope.msg = err.data.msg;
         })
     }
     
