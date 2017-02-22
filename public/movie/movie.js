@@ -25,6 +25,10 @@ angular.module('myApp.movie', ['ui.router'])
                 'footer': {
                     templateUrl: 'footer/footer.html',
                     controller: 'footerController'
+                },
+                'btmMsgModal': {
+                    templateUrl: 'components/bottomMsgModal/bottomMsgModal.html',
+                    controller: 'btmMsgModalController'
                 }
             
             }

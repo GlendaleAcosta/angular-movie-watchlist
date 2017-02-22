@@ -8,7 +8,8 @@ angular.module("myApp", [
     "myApp.login",
     "myApp.signup",
     "myApp.movie",
-    "myApp.profile"
+    "myApp.profile",
+    "myApp.btmMsgModal"
 ])
 
 .config(['$stateProvider', '$urlRouterProvider','$locationProvider', '$httpProvider' , function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider){

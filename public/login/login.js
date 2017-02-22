@@ -40,9 +40,10 @@ angular.module('myApp.login', ['ui.router'])
             console.log(res.data);
             var user = res.data.user;
             $scope.isLoggedIn = res.data.isLoggedIn;
-            auth.setToken(res.data.token);
+            $scope.msg = res.data.msg;
             
             if ($scope.isLoggedIn === true) {
+                auth.setToken(res.data.token);
                 navData.setUser(user);
                 console.log(navData.getUser());
                 $state.go('home');

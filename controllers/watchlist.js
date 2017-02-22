@@ -197,7 +197,7 @@ exports.deleteWatchlist = function(req, res, next){
                  .then(function(data){
                      res.json({
                          hasDeletedMovie: true,
-                         msg: 'The move has been deleted from your watchlist!'
+                         msg: 'This movie has been deleted from your watchlist!'
                      })
                  })
                  .catch(function(err){

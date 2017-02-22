@@ -89,9 +89,10 @@ exports.postLogin = function(req,res,next) {
         // if the email exists
         if(users.length > 0) {
             bcrypt.compare(password, users[0].password, function(err, response){
-
+                console.log("COMPARE PASSWORD");
+                console.log(response);
                 // Password hashed corretly
-                if (!err) {
+                if (response) {
                     db.query(
                         'UPDATE users \
                         SET last_login = CURRENT_TIMESTAMP \
@@ -120,18 +121,24 @@ exports.postLogin = function(req,res,next) {
                     })
                 // error hashing password
                 } else {
-                    return res.status(300).json({
+                    return res.status(200).json({
+                        loginSuccess: false,
                         msg: 'Incorrect password or email.'
                     })
                 }
 
 
             })
-        }  
+        } else {
+            return res.status(200).json({
+                loginSuccess: false,
+                msg: 'Incorrect password or email.'
+            })
+        } 
     })
     // if email does not exist
     .catch(function(){
-        res.status(400).json({
+        res.status(200).json({
             msg: 'That email does not exist.'
         })
     })
