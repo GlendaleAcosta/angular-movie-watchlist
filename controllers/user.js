@@ -5,14 +5,13 @@ var db = require('../database');
 
 exports.postSignUp = function(req,res,next) {
 
-    
     var email = req.body.email;
-    var password = req.body.password; 
-    
+    var password = req.body.password;
+
     db.query(
         'SELECT email FROM users WHERE email=${email}', {email})
     .then(function(users){
-        
+
         // If there's a user with the specified email, we can't make an account.
         if (users.length > 0) {
             return res.status(400).json({
@@ -23,7 +22,7 @@ exports.postSignUp = function(req,res,next) {
         // If there are no users with the specified email, we create an account
         var hashedPW = bcrypt.hashSync(password);
         bcrypt.hash(password, null , null, function(err, hashedPW) {
-            
+
             // Password is hashed correctly
             if (!err) {
                 db.query(
@@ -38,7 +37,7 @@ exports.postSignUp = function(req,res,next) {
                         $2,\
                         CURRENT_TIMESTAMP \
                     )", [ email, hashedPW ])
-                        
+
                 .then(function(){
                     return res.status(200).json({
                         msg: 'Your account has successfully been created!'
@@ -57,7 +56,7 @@ exports.postSignUp = function(req,res,next) {
                 });
             }
         });
-        
+
 
 
     })
@@ -78,8 +77,8 @@ exports.postSignUp = function(req,res,next) {
 exports.postLogin = function(req,res,next) {
 
     var email = req.body.email;
-    var password = req.body.password; 
-    
+    var password = req.body.password;
+
     db.query(
         'SELECT * FROM users WHERE email=${email}', {email})
     .then(function(users){
@@ -134,7 +133,7 @@ exports.postLogin = function(req,res,next) {
                 loginSuccess: false,
                 msg: 'Incorrect password or email.'
             })
-        } 
+        }
     })
     // if email does not exist
     .catch(function(){
@@ -151,9 +150,9 @@ exports.postAuthenticate = function(req, res, next) {
     var token = req.body.token;
 
     jwt.verify(token, 'process.env.JWT_SECRET_KEY', function(err, decoded) {
-        
+
         return res.status(200).json({
             user: decoded
-        }); 
+        });
     });
 }

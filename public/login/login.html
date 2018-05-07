@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <h1>Login :D</h1>
-            <hr>    
+            <p>If you've just signed up, you can now login!</p>
+            <hr>
             <form class="mb-1" ng-submit="login(email, password)">
                 <div class="form-group">
                     <input ng-model="email" class="form-control" type="text" placeholder="Enter email.." >
@@ -14,15 +15,15 @@
                 <div class="form-group">
                     <input ng-model="password" class="form-control" type="password" placeholder="Enter password...">
                 </div>
-                
-                <button class="btn btn-primary form-control" type="submit">Login</button>
+
+                <button class="btn btn-info form-control" type="submit">Login</button>
             </form>
             <div ng-show="msg" class="card card-outline-danger text-center">
                 <div class="card-block p-1">
                     <p>{{msg}}</p>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
