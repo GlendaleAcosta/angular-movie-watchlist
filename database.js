@@ -7,7 +7,7 @@ var connection = {
     database: 'movie_watchlist',
     user: 'glendaleacosta',
     password: ''
-}
+} 
 // var connection = {
 //     host: 'ec2-23-23-225-116.compute-1.amazonaws.com',
 //     port: 5432,

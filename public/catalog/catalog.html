@@ -1,6 +1,6 @@
 
 <div class="container space-2">
-    <div class="row">
+    <div class="row"> 
 
         <div class="col-md-3">
 
@@ -8,7 +8,7 @@
                 <div class="card-block genre-block">
                     <h4 class="white card-title">Genres</h4>
                 </div>
-            
+
                 <ul class="list-group list-group-flush genres-container">
                     <li ng-click="selectGenre($index)" ng-repeat="genre in genres" class="list-group-item genre-item">{{genre.name}}</li>
                 </ul>
@@ -27,11 +27,11 @@
                 </span>
                 </div>
             </form>
-            
+
             <h4 ng-hide="!titleResult" class="space-2-sm">Search results for "{{titleResult}}" </h4>
             <h4 ng-hide="!genreResult" class="space-2-sm">Showing results for "{{genreResult}}" </h4>
             <h4 ng-hide="!popularResult" class="space-2-sm">Showing "{{popularResult}}" results...</h4>
-            
+
             <div class="flex-container">
                 <div ng-click="selectMovie($index)" class="movie-item" ng-repeat="movie in movies">
                     <a ui-sref="movie({movieId: movieId})">
@@ -50,7 +50,7 @@
 <!--<div class="container-fluid">
     <div class="row">
 
-         
+
         <div ng-repeat="movie in movies" class="col-sm-2">
             <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >
             <div class="card">

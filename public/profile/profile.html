@@ -1,14 +1,14 @@
 <div class="container">
 
 
-    <div class="row space-2">
+    <div class="row space-2"> 
 
         <div class="col-md-3">
             <div class="card genre-shadow">
                 <div class="card-block genre-block">
                     <h4 class="card-title white">My Profile</h4>
                 </div>
-            
+
                 <ul class="list-group list-group-flush genres-container">
                     <li ui-sref="profile({userId: userId, profilePage: 'movie-watchlist'})" class="list-group-item genre-item">My Movie Watchlist</li>
                     <li ui-sref="profile({userId: userId, profilePage: 'favorite-movies'})" class="list-group-item genre-item">My Favorite Movies</li>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="flex-container space-2-sm">
-                
+
                 <div ng-mousemove="setModalCoord()"  ng-mouseenter="hoverMovie(movie, $index)" ng-mouseleave="leaveMovie()" class="movie-item" ng-repeat="movie in movies">
                     <a ui-sref="movie({movieId: movie.id})">
                         <img class="card-img card-img-top img-fluid" src=" {{ 'http://image.tmdb.org/t/p/w342' + movie.poster_path }}" >

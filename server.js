@@ -9,7 +9,7 @@ var sassMiddleware = require('node-sass-middleware');
 
 // Load environment variables
 dotenv.load({ path: '.env' });
-
+ 
 
 // Server
 var app = express();
@@ -32,7 +32,7 @@ app.use(sassMiddleware({
     debug: true,
     outputStyle: 'compressed',
     indentedSyntax: true,
-    prefix: '/stylesheets' 
+    prefix: '/stylesheets'
 }));
 app.use(express.static(path.join(__dirname ,'public')));
 app.use(bodyParser.json());
@@ -57,4 +57,3 @@ app.get('/*', homeController.index);
 app.listen( PORT , () => {
     console.log("App is up on port " + PORT);
 });
-
